@@ -1,0 +1,17 @@
+A	.editorconfig
+A	.env.example
+A	.gitignore
+A	.pre-commit-config.yaml
+A	CLAUDE.md
+A	Makefile
+A	README.md
+A	backend/.gitkeep
+A	docs/decisions/0001-redis-in-memory-only.md
+A	docs/decisions/0002-direct-model-execution.md
+A	docs/decisions/0003-form-data-in-browser.md
+A	docs/decisions/0004-react-vite-openapi-client.md
+A	docs/decisions/0005-regression-test-policy.md
+A	docs/decisions/0006-two-stage-deployment.md
+A	docs/decisions/README.md
+A	frontend/.gitkeep
+A	scripts/doctor.sh

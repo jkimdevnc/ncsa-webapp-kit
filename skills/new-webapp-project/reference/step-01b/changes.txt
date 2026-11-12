@@ -1,0 +1,9 @@
+A	.github/pull_request_template.md
+A	.github/workflows/branch-policy.yml
+M	.pre-commit-config.yaml
+M	CLAUDE.md
+M	Makefile
+M	README.md
+A	docs/decisions/0007-branching-model.md
+M	docs/decisions/README.md
+M	scripts/doctor.sh

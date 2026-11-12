@@ -1,0 +1,29 @@
+# Local services. In Steps 2-12 only Redis runs here; the API and frontend run as dev servers.
+# Step 13 adds the api and web containers for the full local stack.
+services:
+  redis:
+    image: redis:7-alpine
+    # In memory only (docs/decisions/0001): no RDB snapshots, no AOF, and a memory cap so it can't fill up.
+    # volatile-ttl evicts the keys closest to expiry first; every result key has a TTL.
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - 256mb
+      - --maxmemory-policy
+      - volatile-ttl
+    # The image declares /data as a volume; tmpfs keeps it in memory so nothing reaches disk.
+    tmpfs:
+      - /data
+    # Localhost only: Redis has no password in local development.
+    ports:
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped

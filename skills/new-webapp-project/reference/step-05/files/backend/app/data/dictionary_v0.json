@@ -1,0 +1,45 @@
+{
+  "dictionary_version": "0.1.0",
+  "variables": [
+    {
+      "code": "GOL",
+      "name": "Glabello-occipital length",
+      "region": "Cranium",
+      "group": "Metric",
+      "unit": "mm",
+      "precision": 0.1,
+      "possible_range": { "min": 150, "max": 220 },
+      "range_source": "placeholder: to be confirmed by the PI"
+    },
+    {
+      "code": "NOL",
+      "name": "Nasio-occipital length",
+      "region": "Cranium",
+      "group": "Metric",
+      "unit": "mm",
+      "precision": 0.1,
+      "possible_range": { "min": 150, "max": 220 },
+      "range_source": "placeholder: to be confirmed by the PI"
+    },
+    {
+      "code": "BNL",
+      "name": "Basion-nasion length",
+      "region": "Cranium",
+      "group": "Metric",
+      "unit": "mm",
+      "precision": 0.1,
+      "possible_range": { "min": 80, "max": 120 },
+      "range_source": "placeholder: to be confirmed by the PI"
+    },
+    {
+      "code": "XCB",
+      "name": "Maximum cranial breadth",
+      "region": "Cranium",
+      "group": "Metric",
+      "unit": "mm",
+      "precision": 0.1,
+      "possible_range": { "min": 100, "max": 200 },
+      "range_source": "Figma wireframe 04"
+    }
+  ]
+}

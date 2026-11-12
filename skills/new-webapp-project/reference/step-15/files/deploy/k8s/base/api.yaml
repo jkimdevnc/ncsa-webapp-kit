@@ -1,0 +1,69 @@
+# Settings come from env vars (backend/app/config.py, .env.example). The API keeps no state of its own, so it runs
+# 2 replicas that share Redis.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api
+data:
+  REDIS_URL: redis://redis:6379/0
+  LOG_LEVEL: INFO
+  RESULT_TTL_SECONDS: "86400"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: api
+          image: mosaic-api
+          envFrom:
+            - configMapRef:
+                name: api
+          ports:
+            - containerPort: 8000
+          livenessProbe:
+            httpGet: { path: /api/v1/livez, port: 8000 }
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: { path: /api/v1/readyz, port: 8000 }
+            periodSeconds: 5
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits: { memory: 512Mi }
+          # Nothing on the container's own disk: a read-only root filesystem, and /tmp in memory.
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir:
+            medium: Memory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  selector:
+    app: api
+  ports:
+    - port: 8000

@@ -1,0 +1,10 @@
+M	Makefile
+M	README.md
+A	backend/scripts/export_openapi.py
+M	docs/decisions/0004-react-vite-openapi-client.md
+A	docs/plans/step-09.md
+M	frontend/.prettierignore
+M	frontend/eslint.config.js
+M	frontend/package.json
+A	frontend/src/api/client.ts
+M	frontend/src/api/readyz.ts

@@ -1,0 +1,5 @@
+M	README.md
+A	backend/app/data/dictionary_v0.json
+A	backend/app/dictionary.py
+M	backend/app/main.py
+A	backend/tests/unit/test_dictionary.py

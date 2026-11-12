@@ -1,0 +1,25 @@
+# The cluster's Traefik routes the public hostname: HTTPS with a Let's Encrypt certificate (its `letsencrypt` resolver),
+# /api to the API and everything else to web. Plain HTTP is redirected to HTTPS by Traefik itself.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mosaic
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts: [mosaic.staging.platform.visari.org]
+  rules:
+    - host: mosaic.staging.platform.visari.org
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service: { name: api, port: { number: 8000 } }
+          - path: /
+            pathType: Prefix
+            backend:
+              service: { name: web, port: { number: 8080 } }

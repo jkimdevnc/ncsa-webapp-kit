@@ -1,0 +1,7 @@
+# Only what the build needs goes into the build context.
+node_modules
+dist
+e2e
+playwright-report
+test-results
+openapi.json

@@ -1,0 +1,11 @@
+A	docs/plans/step-11.md
+A	frontend/e2e/workup.spec.ts
+M	frontend/src/App.tsx
+A	frontend/src/api/dictionary.ts
+A	frontend/src/storage/workupStore.test.ts
+A	frontend/src/storage/workupStore.ts
+A	frontend/src/workup/WorkupPage.test.tsx
+A	frontend/src/workup/WorkupPage.tsx
+A	frontend/src/workup/useWorkup.ts
+A	frontend/src/workup/validation.test.ts
+A	frontend/src/workup/validation.ts

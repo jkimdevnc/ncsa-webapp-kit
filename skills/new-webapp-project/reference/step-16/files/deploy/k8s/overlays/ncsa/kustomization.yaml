@@ -1,0 +1,25 @@
+# The NCSA cluster `visual-analytics` (Rancher), at https://mosaic.staging.platform.visari.org. The namespace and its
+# `ghcr-pull` secret are made by hand once (docs/deploy-ncsa.md), so this overlay creates neither. `make ncsa-up`
+# replaces IMAGE_TAG with the images' `sha-<commit>` tag and applies it.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mosaic-staging
+resources:
+  - ../../base
+  - ingress.yaml
+images:
+  - name: mosaic-api
+    newName: ghcr.io/jkimdevnc/mosaic-api
+    newTag: IMAGE_TAG
+  - name: mosaic-web
+    newName: ghcr.io/jkimdevnc/mosaic-web
+    newTag: IMAGE_TAG
+patches:
+  # The GHCR packages are private.
+  - target:
+      kind: Deployment
+      name: api|web
+    patch: |-
+      - op: add
+        path: /spec/template/spec/imagePullSecrets
+        value: [{ name: ghcr-pull }]

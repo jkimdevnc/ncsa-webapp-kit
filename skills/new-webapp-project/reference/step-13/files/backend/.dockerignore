@@ -1,0 +1,7 @@
+# Only what the image needs goes into the build context.
+.venv
+.pytest_cache
+.ruff_cache
+**/__pycache__
+ml_artifacts
+tests

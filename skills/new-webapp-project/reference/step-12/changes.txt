@@ -1,0 +1,9 @@
+M	README.md
+A	docs/plans/step-12.md
+A	frontend/e2e/analyze.spec.ts
+M	frontend/e2e/workup.spec.ts
+A	frontend/src/api/analyses.ts
+A	frontend/src/workup/Analyze.test.tsx
+A	frontend/src/workup/AnalyzePanel.tsx
+M	frontend/src/workup/WorkupPage.test.tsx
+M	frontend/src/workup/WorkupPage.tsx

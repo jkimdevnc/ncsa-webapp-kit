@@ -1,0 +1,11 @@
+M	.github/workflows/ci.yml
+M	Makefile
+M	README.md
+A	docs/plans/step-10.md
+M	frontend/.prettierignore
+A	frontend/e2e/status.spec.ts
+M	frontend/eslint.config.js
+M	frontend/package.json
+A	frontend/playwright.config.ts
+M	frontend/tsconfig.json
+M	frontend/vite.config.ts

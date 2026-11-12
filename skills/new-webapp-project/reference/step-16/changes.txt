@@ -1,0 +1,10 @@
+M	Makefile
+M	README.md
+M	deploy/k8s/base/redis.yaml
+A	deploy/k8s/overlays/ncsa/ingress.yaml
+A	deploy/k8s/overlays/ncsa/kustomization.yaml
+M	docs/decisions/0006-two-stage-deployment.md
+M	docs/deploy-ncsa.md
+A	docs/plans/step-16.md
+M	frontend/e2e/replicas.spec.ts
+M	scripts/doctor.sh

@@ -1,0 +1,43 @@
+# Runs on every commit (after `make setup`) and on all files with `make lint`.
+# The frontend hooks use frontend/node_modules, so run `make setup` (npm ci) first.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        # Kubernetes manifests keep a Deployment and its Service in one file.
+        args: [--allow-multiple-documents]
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: detect-private-key
+      # main and develop only change through pull requests (docs/decisions/0007).
+      - id: no-commit-to-branch
+        args: [--branch, main, --branch, develop]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.2
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  # Frontend: the same eslint and prettier versions as frontend/package-lock.json.
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: bash -c 'cd frontend && node_modules/.bin/prettier --write --log-level warn .'
+        language: system
+        files: ^frontend/
+        pass_filenames: false
+      - id: eslint
+        name: eslint
+        entry: bash -c 'cd frontend && node_modules/.bin/eslint --max-warnings 0 .'
+        language: system
+        files: ^frontend/
+        pass_filenames: false

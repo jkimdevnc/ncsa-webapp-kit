@@ -1,0 +1,14 @@
+M	.env.example
+M	Makefile
+M	README.md
+M	backend/app/config.py
+M	backend/app/main.py
+A	backend/app/model_catalog.py
+A	backend/app/model_runtime.py
+A	backend/ml_artifacts/.gitkeep
+M	backend/pyproject.toml
+A	backend/scripts/train_demo_model.py
+M	backend/tests/conftest.py
+M	backend/tests/integration/test_readyz_real_redis.py
+A	backend/tests/unit/test_model.py
+M	backend/tests/unit/test_probes.py

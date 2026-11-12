@@ -1,0 +1,50 @@
+# 0006. Two-stage deployment: local first, then Kubernetes
+
+- **Status:** Accepted (2026-10-23)
+
+## Context
+
+MOSAIC will run on an NCSA-managed Kubernetes cluster. Development happens on a MacBook Pro M1 (arm64). The
+cluster's requirements (packaging, ingress, TLS, registry, namespace, security rules) are not known yet.
+
+## Decision
+
+- **Stage 1, local:**
+  - First the dev servers (uvicorn + Vite, with Redis in Docker Compose).
+  - Then the full stack in Docker Compose: Redis + API image + web image (Caddy serves the built frontend and proxies
+    `/api`).
+  - Stage 1 is done when the whole regression suite passes against the local containers.
+- **Stage 2, Kubernetes:** starts only after Stage 1 works.
+  - Multi-architecture images (arm64 + amd64) on GHCR.
+  - Kustomize manifests as a placeholder until NCSA ops say what they require.
+  - First OrbStack's built-in Kubernetes, then the NCSA cluster. In the cluster, an Ingress handles TLS and
+    routing, and Caddy only serves static files.
+- Stage 1 still follows Kubernetes-friendly habits, so Stage 2 needs no redesign:
+  - a stateless API
+  - config from env vars, logs to stdout
+  - `livez` and `readyz` probes
+  - non-root containers
+- The demo model is built into the API image. `ARTIFACT_DIR` can point at a mounted volume later.
+
+**Update 2026-10-29 (Step 15):** OrbStack's Kubernetes has no Ingress controller, and ingress-nginx was retired in
+2026, so there is no Ingress yet. On OrbStack, `web` is a LoadBalancer Service, and Caddy still passes `/api` to the
+`api` Service, as in Compose. The Ingress, and with it TLS and the routing, comes in Step 16 with NCSA's controller.
+
+**Update 2026-10-29 (Step 16):** the NCSA cluster (`visual-analytics`, Rancher) has Traefik, so the NCSA overlay
+has an Ingress: `/api` goes to the API, `/` goes to web, and TLS comes from Traefik's Let's Encrypt resolver, at
+https://mosaic.staging.platform.visari.org. The other apps on that cluster are Nucleus Droplets synced by Argo CD from
+`ncsa/nucleus-infra`. For the prototype, MOSAIC is instead applied directly with kubectl (`make ncsa-up`) into a
+namespace made by hand, `mosaic-staging`. Caddy keeps its `/api` proxy for Compose and OrbStack.
+
+## Consequences
+
+- Every feature is proven on the Mac before any cluster work, so cluster problems are only deployment problems.
+- Some packaging work (Compose, then manifests) is done twice, but both are small.
+
+## Revisit when
+
+- MOSAIC goes beyond a prototype on the NCSA cluster: move it to a Nucleus Droplet + Argo CD Application, like the
+  other apps there.
+- NCSA ops specify packaging or a deploy method (Helm, Argo CD/GitOps, an internal registry such as Harbor).
+- Real models are too large to build into the image (move them to a volume or object storage).
+- A managed Redis is offered on the cluster.

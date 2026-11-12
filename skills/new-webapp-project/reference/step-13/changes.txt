@@ -1,0 +1,12 @@
+M	.editorconfig
+M	.github/workflows/ci.yml
+M	Makefile
+M	README.md
+A	backend/.dockerignore
+A	backend/Dockerfile
+M	docker-compose.yml
+A	docs/plans/step-13.md
+A	frontend/.dockerignore
+A	frontend/Caddyfile
+A	frontend/Dockerfile
+A	frontend/e2e/redis-restart.spec.ts

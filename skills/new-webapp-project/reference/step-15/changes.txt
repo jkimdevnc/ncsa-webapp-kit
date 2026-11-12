@@ -1,0 +1,15 @@
+M	.pre-commit-config.yaml
+M	Makefile
+M	README.md
+A	deploy/k8s/base/api.yaml
+A	deploy/k8s/base/kustomization.yaml
+A	deploy/k8s/base/redis.yaml
+A	deploy/k8s/base/web.yaml
+A	deploy/k8s/overlays/local/kustomization.yaml
+A	deploy/k8s/overlays/local/namespace.yaml
+M	docs/decisions/0006-two-stage-deployment.md
+A	docs/deploy-ncsa.md
+A	docs/plans/step-15.md
+M	frontend/e2e/redis-restart.spec.ts
+A	frontend/e2e/replicas.spec.ts
+M	scripts/doctor.sh

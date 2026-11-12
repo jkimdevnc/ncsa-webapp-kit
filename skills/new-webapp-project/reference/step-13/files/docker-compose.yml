@@ -1,0 +1,70 @@
+# Local services.
+# - Dev servers: `docker compose up -d redis` starts only Redis; the API and frontend run on the Mac.
+# - Full stack: `make up` starts redis, api and web, and the app is at http://localhost:8080.
+services:
+  redis:
+    image: redis:7-alpine
+    # In memory only (docs/decisions/0001): no RDB snapshots, no AOF, and a memory cap so it can't fill up.
+    # volatile-ttl evicts the keys closest to expiry first; every result key has a TTL.
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - 256mb
+      - --maxmemory-policy
+      - volatile-ttl
+    # The image declares /data as a volume; tmpfs keeps it in memory so nothing reaches disk.
+    tmpfs:
+      - /data
+    # Localhost only: Redis has no password in local development.
+    ports:
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  api:
+    image: mosaic-api:dev
+    build: ./backend
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    # Nothing on the container's own disk: the root filesystem is read-only, and /tmp is in memory.
+    read_only: true
+    tmpfs:
+      - /tmp
+    # No published port: only web reaches it, on the compose network.
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/readyz', timeout=2)"
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  web:
+    image: mosaic-web:dev
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8080/"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped

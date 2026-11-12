@@ -1,0 +1,31 @@
+# OrbStack's Kubernetes on the Mac: the images Compose builds (OrbStack shares Docker's image store, so nothing is
+# pulled), and web at http://localhost:8081 (Compose keeps 8080). `make k8s-up` applies it.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mosaic
+resources:
+  - namespace.yaml
+  - ../../base
+images:
+  - name: mosaic-api
+    newTag: dev
+  - name: mosaic-web
+    newTag: dev
+patches:
+  - target:
+      kind: Deployment
+      name: api|web
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Never
+  - target:
+      kind: Service
+      name: web
+    patch: |-
+      - op: add
+        path: /spec/type
+        value: LoadBalancer
+      - op: replace
+        path: /spec/ports/0
+        value: { port: 8081, targetPort: 8080 }

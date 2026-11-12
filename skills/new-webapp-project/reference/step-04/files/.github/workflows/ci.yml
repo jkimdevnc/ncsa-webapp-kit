@@ -1,0 +1,39 @@
+# Runs the same checks as the Mac (`make lint` + `make test`) on every PR into develop or main and on every push to
+# them. GitHub Free has no branch protection for private repos, so a red check here means "do not merge".
+# Node (for the frontend) is added in Step 8.
+name: ci
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    services:
+      # The same image as docker-compose.yml; the integration tests use it on localhost:6379.
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v7
+      # setup-uv publishes no floating major tag, so it is pinned to a release.
+      - uses: astral-sh/setup-uv@v10.3.2
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - name: Lint
+        run: make lint
+      - name: Test
+        run: make test

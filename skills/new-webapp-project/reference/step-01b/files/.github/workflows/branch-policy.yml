@@ -1,0 +1,41 @@
+# Fails a pull request whose source branch breaks the branching model (docs/decisions/0007):
+#   into main    - only from develop
+#   into develop - only from feature/*, fix/*, docs/* or chore/*
+# GitHub Free has no branch protection for private repos, so a red check here means "do not merge".
+name: branch-policy
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+    branches: [main, develop]
+
+permissions: {}
+
+jobs:
+  branch-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source and target branches
+        env:
+          BASE: ${{ github.base_ref }}
+          HEAD: ${{ github.head_ref }}
+        run: |
+          echo "Pull request: $HEAD -> $BASE"
+          case "$BASE" in
+            main)
+              if [ "$HEAD" != "develop" ]; then
+                echo "::error::Pull requests into main must come from develop (got '$HEAD')."
+                exit 1
+              fi
+              ;;
+            develop)
+              case "$HEAD" in
+                feature/*|fix/*|docs/*|chore/*) ;;
+                *)
+                  echo "::error::Pull requests into develop must come from a feature/, fix/, docs/ or chore/ branch (got '$HEAD')."
+                  exit 1
+                  ;;
+              esac
+              ;;
+          esac
+          echo "Branch policy OK."

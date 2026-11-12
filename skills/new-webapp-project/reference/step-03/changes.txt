@@ -1,0 +1,17 @@
+M	.env.example
+M	.gitignore
+M	CLAUDE.md
+M	Makefile
+M	README.md
+D	backend/.gitkeep
+A	backend/.python-version
+A	backend/app/__init__.py
+A	backend/app/config.py
+A	backend/app/main.py
+A	backend/app/redis_client.py
+A	backend/pyproject.toml
+A	backend/tests/conftest.py
+A	backend/tests/integration/test_readyz_real_redis.py
+A	backend/tests/unit/test_config.py
+A	backend/tests/unit/test_probes.py
+M	scripts/doctor.sh
