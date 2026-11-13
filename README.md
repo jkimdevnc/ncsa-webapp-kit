@@ -5,12 +5,27 @@ A Claude Code skill, `new-webapp-project`, that builds a new web app prototype t
 - each step is one plan file, one branch, one PR and one `step-N` tag, and is verified by you.
 
 It is a **recipe plus a reference**:
-- `skills/new-webapp-project/references/steps/` holds the recipe: one contract per step (goal, deliverables,
+- [`skills/new-webapp-project/references/steps/`](skills/new-webapp-project/references/steps/) holds the recipe: one contract per step (goal, deliverables,
   acceptance checks, MOSAIC's default way, and swap notes);
 - `skills/new-webapp-project/reference/` holds a snapshot of what MOSAIC actually did at each step (see `SOURCE.md`).
 
 The skill adapts the reference to the new project's names, domain and stack. MOSAIC's choices are the defaults, and
 any of them can be swapped (for example Postgres instead of Redis, or shadcn for the UI).
+
+## How to view the build steps
+
+The kit builds a project in 18 steps: 0, 1, 1b, 2–16. Stage 1 runs locally, and Stage 2 on Kubernetes.
+
+- **[All 18 steps at a glance](skills/new-webapp-project/references/steps/README.md):** one table per stage. Each row
+  shows what the step builds and what you check.
+- **[One file per step](skills/new-webapp-project/references/steps/):** each file gives the step's goal, deliverables,
+  acceptance checks, default way, and the parts you can swap.
+
+**Ask Claude.** In a Claude Code session opened in your project's folder, type:
+- "Show me the steps": all steps, marked ✅ done, ▶ current, ⚠ needs setup or skipped.
+- "What's the status?" or "Where are we?": the same tables, for your project.
+- "What does Step 7 do?": that step's details and checks.
+- "Use the new-webapp-project skill and show me the steps": if Claude doesn't pick up the skill on its own.
 
 ## How to use this webapp-kit skill with Claude Code
 
@@ -93,6 +108,8 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
     folder later and say *"Resume the project"*, and it continues from the current step.
 
 ### Check where you are
+
+For the full list of steps and example prompts, see [How to view the build steps](#how-to-view-the-build-steps).
 
 At any time, in a session opened in your project's folder, ask in plain words:
 - "Show me the steps"
