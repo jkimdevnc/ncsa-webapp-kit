@@ -94,7 +94,9 @@ Do the steps in this order: **00, 01, 01b, 02, 03, …, 16**. For each step:
    - **files changed in a later MOSAIC step:** take only what this step needs, and leave later behavior for its own
      step.
 
-   Use the reference as a strong default: it is code that already passed this step's checks.
+   Use the reference as a strong default: it is code that already passed this step's checks. Its versions of
+   actions, images and tools date from the snapshot (see `reference/SOURCE.md`). Use current releases instead,
+   for example the latest `astral-sh/setup-uv`.
 
    Don't copy MOSAIC's lockfiles or generated API files. Install with `uv sync` / `npm install`, and generate with
    `make gen-api`, so they match this project.

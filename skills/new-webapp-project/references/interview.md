@@ -60,27 +60,28 @@ The user can also swap later, before the step that uses an item. Record every ch
 | `kubeconfig` / `kube_context` | `~/.kube/ncsa-visual-analytics.yaml` / `visual-analytics` |
 | `pull_secret` | `ghcr-pull` |
 | `entrypoint` / `cert_resolver` | `websecure` / `letsencrypt` |
+| `local_k8s_port` | `8082`: the local port for the OrbStack cluster (Step 15). It must be free, and MOSAIC's cluster uses `8081`. |
 
 These are the NCSA defaults, and all of them can be overridden. They matter only from Step 14 on, so the user can
-leave them as they are and change them before Step 14.
+leave them as they are and change them before Step 14. Step 15 checks that `local_k8s_port` is free.
 
 ## `project.yaml` shape
 
 ```yaml
 schema_version: 1
 kit_commit: <git rev-parse --short HEAD of ncsa-webapp-kit>
-slug: boneage
-title: BoneAge
-description: Estimate age and sex from bone measurements.
+slug: webapp-kit-test
+title: WebappKitTest
+description: A test project for trying the webapp kit (new-webapp-project skill).
 entity: Case
 owner: my-throwaway-org
-repo: boneage-prototype
+repo: webapp-kit-test-prototype
 variables:
-  - {code: FL, label: Femur length, unit: mm, precision: 0, section: Leg,
-     possible_range: {min: 300, max: 600, source: placeholder}}
+  - {code: X1, label: First input, unit: mm, precision: 0, section: Inputs,
+     possible_range: {min: 0, max: 100, source: placeholder}}
 outputs:
-  - {name: age, kind: numeric, unit: years}
-  - {name: sex, kind: categorical, classes: [female, male]}
+  - {name: score, kind: numeric, unit: points}
+  - {name: label, kind: categorical, classes: [low, high]}
 stack:            # see stack.md; only swapped items need comments
   persistence: browser-form, server-run, results-in-memory-ttl
   backend: fastapi
@@ -88,7 +89,8 @@ stack:            # see stack.md; only swapped items need comments
   # …
 python: "3.15"
 node: "26"
-deploy: {namespace: boneage-staging, host: boneage.staging.platform.visari.org, kubeconfig: ~/.kube/ncsa-visual-analytics.yaml,
-         kube_context: visual-analytics, pull_secret: ghcr-pull, entrypoint: websecure, cert_resolver: letsencrypt}
+deploy: {namespace: webapp-kit-test-staging, host: webapp-kit-test.staging.platform.visari.org,
+         kubeconfig: ~/.kube/ncsa-visual-analytics.yaml, kube_context: visual-analytics, pull_secret: ghcr-pull, entrypoint: websecure, cert_resolver: letsencrypt,
+         local_k8s_port: 8082}
 swaps: []         # one entry per swap: {item, from, to, step, adr}
 ```

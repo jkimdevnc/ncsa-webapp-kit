@@ -44,7 +44,7 @@ Work outside the roadmap (a typo, a question) doesn't need this, but say if it t
   4. the user verifies;
   5. merge with a merge commit (`gh pr merge --merge`, **without** `--delete-branch`).
 - **Always ask before deleting a work branch,** locally or on GitHub. The user may want it renamed with a `_DONE`
-  suffix instead (e.g. `docs/boneage-trial-findings_DONE`). Throwaway test branches can be deleted without asking.
+  suffix instead (e.g. `docs/webapp-kit-test-findings_DONE`). Throwaway test branches can be deleted without asking.
 - **Keep the local checkout on `develop` when you are not working on a branch.** The
   `~/.claude/skills/new-webapp-project` symlink serves whatever branch is checked out here, so a half-done branch would
   also change the skill that other sessions load.
