@@ -25,7 +25,8 @@ item off with the date and the PR.
 
   Why: a machine then checks Claude's test judgment. Proving the tools in the kit first keeps MOSAIC stable.
 - [ ] **c. MOSAIC adoption** (done by the MOSAIC session in `mosaic-prototype`, not from here). It has two stages:
-  1. right after v0: the testing *rules*, copied word for word from `references/testing.md`;
+  1. [x] right after v0: the testing *rules*, copied word for word from `references/testing.md`. Done 2026-11-13
+     in mosaic-prototype PR #23, plus PR #24 (ADR 0005 allows removing a removed feature's tests).
   2. once item b is proven: the testing *tools*.
 
   Why: MOSAIC and the kit stay identical, with the kit as the source.

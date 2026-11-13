@@ -20,6 +20,8 @@ The new project gets its **own names, domain and (if the user wants) stack**.
 - `references/steps/step-NN.md`: **the recipe.** One contract per step: goal, required deliverables, acceptance
   checks, MOSAIC's default way, and swap notes. The contract is what a step must achieve. Read it first for every
   step.
+- `references/steps/README.md`: **the steps at a glance.** All 18 steps in the overview format the user wants (see
+  "Showing the steps" below).
 - `reference/step-NN/`: **MOSAIC's actual work** for that step, as a snapshot:
   - `plan.md`: MOSAIC's step plan;
   - `changes.txt`: the files added, modified and deleted;
@@ -40,8 +42,8 @@ the skill behaves the same no matter what MOSAIC looks like today.
 ## Start: new project or resume?
 
 Look for `.framework/state.json` in the current folder, or in the folder the user names.
-- **Found:** resume. Read `state.json` and `project.yaml`. Tell the user which step is current and what state its PR
-  is in, then continue from there.
+- **Found:** resume. Read `state.json` and `project.yaml`. Show the steps overview (see "Showing the steps"), say
+  what state the current step's PR is in, then continue from there.
 - **Not found:** a new project. Run the interview.
 
 ## 1. Interview
@@ -63,6 +65,22 @@ Then:
 
 Update `state.json` at every change of step or status, and commit it with that step's work. It is how a later
 session resumes.
+
+Then show the steps overview once, so the user sees the whole road before Step 1.
+
+## Showing the steps
+
+Whenever the user asks for the steps, the plan, the status or "where are we", show the overview from
+`references/steps/README.md`, filled in with this project's values and status. Also show it on resume, and once after
+the interview.
+
+The format, which the user asked for:
+- two tables, Stage 1 (Steps 0–13) and Stage 2 (Steps 14–16);
+- three columns: **Step** (number · specific name), **What it builds** (specific files, endpoints and tools) and
+  **You check** (①②③ with exact commands, URLs and expected results);
+- ✅ done, ▶ current, ⚠ needs setup or skipped.
+
+At each step's own stop, give that step's "You check" list in full.
 
 ## 2. The per-step loop
 

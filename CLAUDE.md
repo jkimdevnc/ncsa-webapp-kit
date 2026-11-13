@@ -29,7 +29,7 @@ Work outside the roadmap (a typo, a question) doesn't need this, but say if it t
   `skills/new-webapp-project`. Run `make doctor` after setup changes. Run `make setup` once per clone.
 - Never commit secrets: tokens, kubeconfigs, `.env` files.
 
-## Branching (the same model as mosaic-prototype)
+## Git branching rules
 
 - **Never commit directly on `main` or `develop`.** The pre-commit hook blocks it.
 - **`develop` is the default branch.** It receives changes only through PRs from `feature/`, `fix/`, `docs/` or

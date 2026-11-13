@@ -1,6 +1,6 @@
 # Where this reference snapshot came from
 
-- **Source repo:** `jkimdevnc/mosaic-prototype` (local: `/Users/jkm/DATA2/TASKS/MOSAIC/git/mosaic-prototype`)
+- **Source repo:** `jkimdevnc/mosaic-prototype`
 - **Source commit:** `2d2bbf3` (tag `step-16`, "Merge PR #22: step 16 deploy to the NCSA cluster (staging)")
 - **Taken on:** 2026-11-11, with read-only git commands (`git diff --name-status`, `git archive`). Nothing in MOSAIC
   was checked out or changed.

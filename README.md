@@ -19,14 +19,15 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
 
 ### One-time setup
 
-1. **Install the tools the skill uses:**
+1. **Have the three tools you need to get started:**
    - Claude Code;
-   - `git` and the GitHub CLI `gh`;
-   - `uv`;
-   - Node 26;
-   - OrbStack or Docker (OrbStack is needed for the Kubernetes steps).
+   - `git`;
+   - the GitHub CLI `gh`, for the login in the next step.
 
-   The skill checks all of these in Step 0, so you can also install them when it asks.
+   **You don't need to install anything else first.** The skill's Step 0 checks the rest of the tool chain: `uv`,
+   Node 26, and OrbStack or Docker (OrbStack is needed for the Kubernetes steps). For anything missing, Claude
+   proposes the install command and runs it once you approve. A few installs, such as the OrbStack app, may ask for
+   your password or a click, and Claude tells you when.
 2. **Log in to GitHub** with an account that can see this repo:
 
    ```bash
@@ -102,8 +103,8 @@ Later, once the kit is packaged as a plugin (ROADMAP item j), steps 3–4 become
 
 ## Working on the kit
 
-**Maintainers:** the kit's own author keeps the clone at
-`/Users/jkm/DATA2/TASKS/MOSAIC/git/ncsa-webapp-kit`, and the symlink points there.
+**Maintainers:** work in your own clone of the kit, wherever you keep it (for example `~/ncsa-webapp-kit`), and
+make sure the `~/.claude/skills/new-webapp-project` symlink points into that clone. `make doctor` checks this.
 
 **Run later kit work in a Claude Code session opened in this folder** (`ncsa-webapp-kit`). Only then does this
 repo's `CLAUDE.md` load, with its rule to show the next `ROADMAP.md` items and ask before starting one. A session
@@ -114,9 +115,10 @@ opened in `mosaic-prototype` or elsewhere won't see that rule.
   generated project copy it word for word.
 - One-time setup per clone: `make setup` installs the pre-commit hooks. `make lint` and `make doctor` run the checks.
 
-## Branching
+## Git branching rules
 
-This repo uses the same model as `mosaic-prototype`:
+Work happens on short-lived branches. Changes reach `develop` only through PRs, and `main` only receives `develop`, at
+milestones:
 
 ```
 feature/…, fix/…, docs/…, chore/… ──PR──► develop ──PR (at milestones)──► main
@@ -129,7 +131,7 @@ feature/…, fix/…, docs/…, chore/… ──PR──► develop ──PR (at
   - the pre-commit hook blocks commits on `main` and `develop`;
   - the `branch-policy` check fails a PR from a wrongly named branch.
 
-See `CLAUDE.md`, "Branching".
+See `CLAUDE.md`, "Git branching rules".
 
 ## Layout
 
