@@ -63,9 +63,22 @@ These are not simple renames. Rewrite them from `project.yaml`, following `steps
 Run this after each step, from the new repo's root:
 
 ```bash
-grep -rniE 'mosaic|jkimdevnc|workup|cranial|mesocranic|visual-analytics|MLStopping' \
-  --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.venv . || echo "clean"
+OWNER=<owner>; SLUG=<slug>   # from project.yaml
+grep -rniE 'mosaic|jkimdevnc|workup|cranial|mesocranic|MLStopping' \
+  --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=.venv . \
+  | grep -viF -e "$OWNER" -e "$SLUG" || echo "clean"
 ```
 
-Every hit must be either fixed, or a place where the user's own values contain that word (for example a slug
-`mosaic-msu`). Say which in the step's summary.
+The last filter drops lines that contain the project's own owner or slug. It is needed because those values can
+contain a MOSAIC name. In the BoneAge trial, for example, the owner was `jkimdevnc-kit-try`, and without the filter
+every line naming it was flagged and had to be accepted by hand.
+
+Every remaining hit must be fixed. When the owner or slug *does* contain a MOSAIC name, also take one quick look at
+the lines the filter dropped (run the grep without the last filter): a single line can hold both the user's value and
+a real leftover. Say what you found in the step's summary.
+
+`visual-analytics` is not in the pattern. It is the NCSA cluster's context name, a deploy default the project keeps
+on purpose. Two kinds of remaining hits are fine, as long as you say so in the summary:
+- plan files or docs that mention MOSAIC as the source of a decision (for example "MOSAIC added this in a later
+  review");
+- notes about sharing OrbStack with MOSAIC's cluster.

@@ -60,9 +60,10 @@ The user can also swap later, before the step that uses an item. Record every ch
 | `kubeconfig` / `kube_context` | `~/.kube/ncsa-visual-analytics.yaml` / `visual-analytics` |
 | `pull_secret` | `ghcr-pull` |
 | `entrypoint` / `cert_resolver` | `websecure` / `letsencrypt` |
+| `local_k8s_port` | `8082`: the local port for the OrbStack cluster (Step 15). It must be free, and MOSAIC's cluster uses `8081`. |
 
 These are the NCSA defaults, and all of them can be overridden. They matter only from Step 14 on, so the user can
-leave them as they are and change them before Step 14.
+leave them as they are and change them before Step 14. Step 15 checks that `local_k8s_port` is free.
 
 ## `project.yaml` shape
 
@@ -89,6 +90,7 @@ stack:            # see stack.md; only swapped items need comments
 python: "3.15"
 node: "26"
 deploy: {namespace: boneage-staging, host: boneage.staging.platform.visari.org, kubeconfig: ~/.kube/ncsa-visual-analytics.yaml,
-         kube_context: visual-analytics, pull_secret: ghcr-pull, entrypoint: websecure, cert_resolver: letsencrypt}
+         kube_context: visual-analytics, pull_secret: ghcr-pull, entrypoint: websecure, cert_resolver: letsencrypt,
+         local_k8s_port: 8082}
 swaps: []         # one entry per swap: {item, from, to, step, adr}
 ```

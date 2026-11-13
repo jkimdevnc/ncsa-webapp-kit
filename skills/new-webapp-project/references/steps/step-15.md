@@ -14,7 +14,10 @@ replicas share storage instead of keeping state of their own.
     capabilities dropped, read-only root filesystem, in-memory `/tmp`;
   - `web` Deployment + ClusterIP Service on 8080; readiness on `/`; non-root.
 - A **local overlay** (e.g. `deploy/k8s/overlays/local/`): namespace `<slug>`, the locally built images with no
-  pulling (so no pull secret is needed), and `web` exposed on a port that does not clash with Compose (e.g. 8081).
+  pulling (so no pull secret is needed), and `web` exposed on a free local port: `deploy.local_k8s_port` in
+  `project.yaml` (default `8082`). Check it first with `lsof -iTCP:<port> -sTCP:LISTEN`. It must clash neither with
+  Compose (`8080`) nor with other clusters on the same OrbStack. MOSAIC's own cluster already uses `8081` there, which
+  is why the BoneAge trial had to move to `8082`.
 - Every kubectl command names the local context explicitly, so nothing touches another cluster.
 - Make targets: `k8s-up` (build, apply, restart so new images are used, wait for rollout), `k8s-down` (delete the
   namespace), `test-e2e-k8s` (the E2E suite on the local URL, one worker, with the restart command and the kubectl
@@ -42,7 +45,8 @@ replicas share storage instead of keeping state of their own.
 
 ## Default (MOSAIC's way)
 Kustomize under `deploy/k8s/`, OrbStack's cluster (`--context orbstack`), images `mosaic-api:dev` / `mosaic-web:dev`
-with `imagePullPolicy: Never`, `web` as a LoadBalancer on `localhost:8081` (no Ingress: OrbStack has none).
+with `imagePullPolicy: Never`, `web` as a LoadBalancer on `localhost:8081` (no Ingress: OrbStack has none). A new
+project uses its own `local_k8s_port` instead, because 8081 is taken whenever MOSAIC's cluster is running.
 `E2E_RESTART_REDIS` changed from a flag to a command here, and the test first used `E2E_K8S_NAMESPACE` (Step 16
 replaced it with `E2E_KUBECTL`; a new project uses `E2E_KUBECTL` now). Caddy needed the `NET_BIND_SERVICE`
 capability kept, because the binary carries it as a file capability. CI does not run Kubernetes.

@@ -34,7 +34,10 @@ the old name before pruning.
 
 Reference: reference/step-04/ (plan.md, changes.txt, files/).
 
-Adapt: nothing domain-specific; check that the pinned action versions exist today.
+Adapt: nothing domain-specific. Use the **latest release** of each pinned action, not the snapshot's pin.
+`setup-uv@v10.3.2` dates from the snapshot (2026-11), and the BoneAge trial already used `v10.3.3`. The same pin
+appears again in the `ci.yml` of Steps 8, 10 and 13. Pin to a release that exists today, with
+`gh release view --repo astral-sh/setup-uv`.
 
 ## Swap notes
 Depends on: CI, backend, storage/cache, test runners, linters.
