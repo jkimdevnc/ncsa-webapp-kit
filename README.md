@@ -12,23 +12,98 @@ It is a **recipe plus a reference**:
 The skill adapts the reference to the new project's names, domain and stack. MOSAIC's choices are the defaults, and
 any of them can be swapped (for example Postgres instead of Redis, or shadcn for the UI).
 
-## Load the skill (personal, through a symlink)
+## How to use this webapp-kit skill with Claude Code
 
-```bash
-ln -s /Users/jkm/DATA2/TASKS/MOSAIC/git/ncsa-webapp-kit/skills/new-webapp-project ~/.claude/skills/new-webapp-project
-```
+The kit isn't a plugin yet, so you install it by cloning this repo and linking the skill folder into your personal
+Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-webapp-kit` first.
 
-Start a new Claude Code session and check that `new-webapp-project` is listed among the skills. Edits in this repo
-take effect in new sessions straight away.
+### One-time setup
 
-## Try it
+1. **Install the tools the skill uses:**
+   - Claude Code;
+   - `git` and the GitHub CLI `gh`;
+   - `uv`;
+   - Node 26;
+   - OrbStack or Docker (OrbStack is needed for the Kubernetes steps).
 
-1. Create a throwaway GitHub org for trying it out (creating an org is something you do yourself).
-2. Open a Claude Code session in an empty folder, for example `~/tmp/try-kit`. Ask: "Start a new project with the
-   MOSAIC framework".
-3. Give your throwaway org as the owner. Go through Steps 1–4 first, then as far as you like.
+   The skill checks all of these in Step 0, so you can also install them when it asks.
+2. **Log in to GitHub** with an account that can see this repo:
+
+   ```bash
+   gh auth login
+   ```
+
+3. **Clone the kit and stay on `develop`.** `develop` is the default branch, and it has the latest skill.
+
+   ```bash
+   git clone https://github.com/jkimdevnc/ncsa-webapp-kit.git ~/ncsa-webapp-kit
+   ```
+
+4. **Link the skill into your personal Claude Code skills:**
+
+   ```bash
+   mkdir -p ~/.claude/skills && ln -s ~/ncsa-webapp-kit/skills/new-webapp-project ~/.claude/skills/new-webapp-project
+   ```
+
+5. **Check that Claude Code sees it.** Start a new Claude Code session and ask "Is the new-webapp-project skill
+   available?", or look for it in the skills list.
+
+### Start a new project
+
+6. **Pick or create the GitHub owner for the new repo.** This is your own account or an org. To try the skill out,
+   use a throwaway org; you create the org yourself on GitHub.
+7. **Open Claude Code in an empty folder:**
+
+   ```bash
+   mkdir -p ~/projects/my-app && cd ~/projects/my-app && claude
+   ```
+
+8. **Ask for a new project,** for example: *"Start a new project with the MOSAIC framework."* The skill starts on
+   its own; you can also name it ("use the new-webapp-project skill").
+9. **Answer the interview.** Each question shows a default, which you can accept or change:
+   - **The project:** slug, title, one-line description, the name of one record (default "Case"), GitHub owner and
+     repo name. At NCSA, avoid a plain "mosaic" name.
+   - **The domain:** your input variables, typed in or from a CSV/JSON dictionary file, and the model's outputs, each
+     numeric or categorical.
+   - **The stack:** keep MOSAIC's defaults (FastAPI, Redis, React) or swap a part, such as Postgres or shadcn.
+   - **Versions and deployment values:** NCSA defaults; leave them until Step 14 if you like.
+
+   Review the `project.yaml` it writes, then say OK.
+10. **Approve creating the GitHub repo** when it asks, in Step 1.
+
+### The step loop (Steps 0, 1, 1b, 2–16)
+
+11. **For each step, the skill:**
+    1. asks whether to keep the default for this step or swap a part;
+    2. creates a branch and writes the step's plan file;
+    3. builds the step, with tests and `make lint` and `make test` green;
+    4. opens a PR and waits for green CI;
+    5. stops and tells you what to verify.
+12. **Verify the step yourself,** using the commands or clicks it gives you, then say OK. The skill then:
+    1. merges the PR;
+    2. tags `step-N`;
+    3. asks whether to **rename the branch `_DONE`, delete it, or keep it**.
+13. **Do the steps only you can do** when it asks:
+    - installing tools and `gh auth switch`;
+    - turning on Kubernetes in OrbStack (Step 15);
+    - for NCSA (Step 16): the namespace, the pull secret made with your own token, and the kubeconfig. The skill
+      prints the commands, and you run them.
+14. **Stop and resume any time.** Progress is saved in `.framework/state.json`. Open Claude Code in the project
+    folder later and say *"Resume the project"*, and it continues from the current step.
+
+### Staying up to date
+
+15. **Get skill updates** by running `git pull` in `~/ncsa-webapp-kit` while it is on `develop`. The symlink means new
+    sessions pick up the update at once.
+16. **Send feedback.** Note anything the skill got wrong for your project. Those findings go into `ROADMAP.md`
+    (item a) through a PR on this repo.
+
+Later, once the kit is packaged as a plugin (ROADMAP item j), steps 3–4 become a single plugin install.
 
 ## Working on the kit
+
+**Maintainers:** the kit's own author keeps the clone at
+`/Users/jkm/DATA2/TASKS/MOSAIC/git/ncsa-webapp-kit`, and the symlink points there.
 
 **Run later kit work in a Claude Code session opened in this folder** (`ncsa-webapp-kit`). Only then does this
 repo's `CLAUDE.md` load, with its rule to show the next `ROADMAP.md` items and ask before starting one. A session
