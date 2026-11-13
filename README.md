@@ -103,8 +103,8 @@ Later, once the kit is packaged as a plugin (ROADMAP item j), steps 3–4 become
 
 ## Working on the kit
 
-**Maintainers:** the kit's own author keeps the clone at
-`/Users/jkm/DATA2/TASKS/MOSAIC/git/ncsa-webapp-kit`, and the symlink points there.
+**Maintainers:** work in your own clone of the kit, wherever you keep it (for example `~/ncsa-webapp-kit`), and
+make sure the `~/.claude/skills/new-webapp-project` symlink points into that clone. `make doctor` checks this.
 
 **Run later kit work in a Claude Code session opened in this folder** (`ncsa-webapp-kit`). Only then does this
 repo's `CLAUDE.md` load, with its rule to show the next `ROADMAP.md` items and ask before starting one. A session
