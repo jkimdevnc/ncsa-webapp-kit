@@ -37,11 +37,30 @@ opened in `mosaic-prototype` or elsewhere won't see that rule.
 - `ROADMAP.md` is the to-do list, done one item at a time.
 - `skills/new-webapp-project/references/testing.md` is the master copy of the testing rules. MOSAIC and every
   generated project copy it word for word.
+- One-time setup per clone: `make setup` installs the pre-commit hooks. `make lint` and `make doctor` run the checks.
+
+## Branching
+
+This repo uses the same model as `mosaic-prototype`:
+
+```
+feature/…, fix/…, docs/…, chore/… ──PR──► develop ──PR (at milestones)──► main
+                                          (default branch)                (releases, tagged vX.Y.Z)
+```
+
+- **Merges:** merge commits only.
+- **Merged branches:** kept, or renamed `_DONE`.
+- **Enforcement:**
+  - the pre-commit hook blocks commits on `main` and `develop`;
+  - the `branch-policy` check fails a PR from a wrongly named branch.
+
+See `CLAUDE.md`, "Branching".
 
 ## Layout
 
 ```
-README.md, CLAUDE.md, ROADMAP.md
+README.md, CLAUDE.md, ROADMAP.md, Makefile (setup, lint, doctor), scripts/doctor.sh
+.github/              branch-policy workflow, PR template
 skills/new-webapp-project/
   SKILL.md            the workflow
   references/         steps/ (contracts), interview, stack, naming, branching, testing
