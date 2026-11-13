@@ -19,14 +19,15 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
 
 ### One-time setup
 
-1. **Install the tools the skill uses:**
+1. **Have the three tools you need to get started:**
    - Claude Code;
-   - `git` and the GitHub CLI `gh`;
-   - `uv`;
-   - Node 26;
-   - OrbStack or Docker (OrbStack is needed for the Kubernetes steps).
+   - `git`;
+   - the GitHub CLI `gh`, for the login in the next step.
 
-   The skill checks all of these in Step 0, so you can also install them when it asks.
+   **You don't need to install anything else first.** The skill's Step 0 checks the rest of the tool chain: `uv`,
+   Node 26, and OrbStack or Docker (OrbStack is needed for the Kubernetes steps). For anything missing, Claude
+   proposes the install command and runs it once you approve. A few installs, such as the OrbStack app, may ask for
+   your password or a click, and Claude tells you when.
 2. **Log in to GitHub** with an account that can see this repo:
 
    ```bash
