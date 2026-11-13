@@ -92,6 +92,21 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
 14. **Stop and resume any time.** Progress is saved in `.framework/state.json`. Open Claude Code in the project
     folder later and say *"Resume the project"*, and it continues from the current step.
 
+### Check where you are
+
+At any time, in a session opened in your project's folder, ask in plain words:
+- "Show me the steps"
+- "What's the status?" or "Where are we?"
+
+Claude then shows all the steps in two tables:
+- Stage 1 (local) and Stage 2 (Kubernetes);
+- columns **Step**, **What it builds** and **You check**;
+- each step marked ✅ done, ▶ current, or ⚠ needs setup or skipped.
+
+It also shows these tables when you resume in a new session, and once after the first interview.
+
+If Claude doesn't use the skill on its own, say "Use the new-webapp-project skill and show me the steps."
+
 ### Staying up to date
 
 15. **Get skill updates** by running `git pull` in `~/ncsa-webapp-kit` while it is on `develop`. The symlink means new
