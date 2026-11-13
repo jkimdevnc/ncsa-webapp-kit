@@ -6,6 +6,17 @@ item off with the date and the PR.
 
 - [ ] **a. Adjust v0 from the user's try-it findings.**
       Why: real use shows what the contracts and the interview get wrong; fix those before adding more.
+
+  Findings from the first try-it, `webapp-kit-test` (2026-11-12). Item a stays open for later try-its.
+  - [x] **The testing rules lacked "fail first" and how to remove a feature.** New rule 6, the `remove` decision, the
+    feature-removal row, and the `removed:` and `failed first:` lines. Done in PR #1.
+  - [x] **The leftover-name check was too strict.** It flagged an owner that contains a MOSAIC name
+    (`jkimdevnc-kit-try`). `naming.md` now filters out the project's own owner and slug. Done in PR #5.
+  - [x] **Step 15's port clashed with MOSAIC's cluster.** The suggested `8081` is MOSAIC's own port on the same
+    OrbStack. There is now a `local_k8s_port` setting (default `8082`), checked with `lsof`. Done in PR #5.
+  - [x] **The snapshot's setup-uv pin was outdated.** `v10.3.2` is pinned in the snapshot, and the trial used
+    `v10.3.3`. The Step 4 contract and `SKILL.md` now say to use current releases. Done in PR #5. The snapshot
+    itself gets refreshed in item e.
 - [ ] **b. Build the testing tools in the kit, and prove them on a generated test project.** There are four tools:
   - the test-guard CI job (path check + weakening guard);
   - diff coverage;
