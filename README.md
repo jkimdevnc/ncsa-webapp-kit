@@ -131,7 +131,7 @@ feature/…, fix/…, docs/…, chore/… ──PR──► develop ──PR (at
   - the pre-commit hook blocks commits on `main` and `develop`;
   - the `branch-policy` check fails a PR from a wrongly named branch.
 
-See `CLAUDE.md`, "Branching".
+See `CLAUDE.md`, "Git branching rules".
 
 ## Layout
 

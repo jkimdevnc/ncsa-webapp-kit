@@ -13,6 +13,6 @@ repos:
       - id: check-added-large-files
         args: [--maxkb=1024]
       - id: detect-private-key
-      # main and develop only change through pull requests (CLAUDE.md, "Branching").
+      # main and develop only change through pull requests (CLAUDE.md, "Git branching rules").
       - id: no-commit-to-branch
         args: [--branch, main, --branch, develop]
