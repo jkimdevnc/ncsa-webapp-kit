@@ -11,11 +11,11 @@ item off with the date and the PR.
   - [x] **The testing rules lacked "fail first" and how to remove a feature.** New rule 6, the `remove` decision, the
     feature-removal row, and the `removed:` and `failed first:` lines. Done in PR #1.
   - [x] **The leftover-name check was too strict.** It flagged an owner that contains a MOSAIC name
-    (`jkimdevnc-kit-try`). `naming.md` now filters out the project's own owner and slug. Done in PR #4.
+    (`jkimdevnc-kit-try`). `naming.md` now filters out the project's own owner and slug. Done in PR #5.
   - [x] **Step 15's port clashed with MOSAIC's cluster.** The suggested `8081` is MOSAIC's own port on the same
-    OrbStack. There is now a `local_k8s_port` setting (default `8082`), checked with `lsof`. Done in PR #4.
+    OrbStack. There is now a `local_k8s_port` setting (default `8082`), checked with `lsof`. Done in PR #5.
   - [x] **The snapshot's setup-uv pin was outdated.** `v10.3.2` is pinned in the snapshot, and the trial used
-    `v10.3.3`. The Step 4 contract and `SKILL.md` now say to use current releases. Done in PR #4. The snapshot
+    `v10.3.3`. The Step 4 contract and `SKILL.md` now say to use current releases. Done in PR #5. The snapshot
     itself gets refreshed in item e.
 - [ ] **b. Build the testing tools in the kit, and prove them on a generated test project.** There are four tools:
   - the test-guard CI job (path check + weakening guard);
