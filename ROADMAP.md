@@ -7,7 +7,7 @@ item off with the date and the PR.
 - [ ] **a. Adjust v0 from the user's try-it findings.**
       Why: real use shows what the contracts and the interview get wrong; fix those before adding more.
 
-  Findings from the BoneAge trial (2026-11-12, `boneage-prototype`). Item a stays open for later try-its.
+  Findings from the first try-it, `webapp-kit-test` (2026-11-12). Item a stays open for later try-its.
   - [x] **The testing rules lacked "fail first" and how to remove a feature.** New rule 6, the `remove` decision, the
     feature-removal row, and the `removed:` and `failed first:` lines. Done in PR #1.
   - [x] **The leftover-name check was too strict.** It flagged an owner that contains a MOSAIC name

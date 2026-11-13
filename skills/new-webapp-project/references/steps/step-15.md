@@ -17,7 +17,7 @@ replicas share storage instead of keeping state of their own.
   pulling (so no pull secret is needed), and `web` exposed on a free local port: `deploy.local_k8s_port` in
   `project.yaml` (default `8082`). Check it first with `lsof -iTCP:<port> -sTCP:LISTEN`. It must clash neither with
   Compose (`8080`) nor with other clusters on the same OrbStack. MOSAIC's own cluster already uses `8081` there, which
-  is why the BoneAge trial had to move to `8082`.
+  is why the `webapp-kit-test` try-it had to move to `8082`.
 - Every kubectl command names the local context explicitly, so nothing touches another cluster.
 - Make targets: `k8s-up` (build, apply, restart so new images are used, wait for rollout), `k8s-down` (delete the
   namespace), `test-e2e-k8s` (the E2E suite on the local URL, one worker, with the restart command and the kubectl

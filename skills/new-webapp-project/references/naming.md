@@ -70,8 +70,8 @@ grep -rniE 'mosaic|jkimdevnc|workup|cranial|mesocranic|MLStopping' \
 ```
 
 The last filter drops lines that contain the project's own owner or slug. It is needed because those values can
-contain a MOSAIC name. In the BoneAge trial, for example, the owner was `jkimdevnc-kit-try`, and without the filter
-every line naming it was flagged and had to be accepted by hand.
+contain a MOSAIC name. In the `webapp-kit-test` try-it, for example, the owner was `jkimdevnc-kit-try`, and without
+the filter every line naming it was flagged and had to be accepted by hand.
 
 Every remaining hit must be fixed. When the owner or slug *does* contain a MOSAIC name, also take one quick look at
 the lines the filter dropped (run the grep without the last filter): a single line can hold both the user's value and
