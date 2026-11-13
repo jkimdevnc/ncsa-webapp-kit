@@ -115,9 +115,10 @@ opened in `mosaic-prototype` or elsewhere won't see that rule.
   generated project copy it word for word.
 - One-time setup per clone: `make setup` installs the pre-commit hooks. `make lint` and `make doctor` run the checks.
 
-## Branching
+## Git branching rules
 
-This repo uses the same model as `mosaic-prototype`:
+Work happens on short-lived branches. Changes reach `develop` only through PRs, and `main` only receives `develop`, at
+milestones:
 
 ```
 feature/…, fix/…, docs/…, chore/… ──PR──► develop ──PR (at milestones)──► main
