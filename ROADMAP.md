@@ -10,9 +10,9 @@ item off with the date and the PR.
   Findings from the first try-it, `webapp-kit-test` (2026-11-12). Item a stays open for later try-its.
   - [x] **The testing rules lacked "fail first" and how to remove a feature.** New rule 6, the `remove` decision, the
     feature-removal row, and the `removed:` and `failed first:` lines. Done in PR #1.
-  - [x] **The leftover-name check was too strict.** It flagged an owner that contains a MOSAIC name
+  - [x] **The leftover-name check was too strict.** It flagged an owner that contains a Mosaic-Forensic name
     (`jkimdevnc-kit-try`). `naming.md` now filters out the project's own owner and slug. Done in PR #5.
-  - [x] **Step 15's port clashed with MOSAIC's cluster.** The suggested `8081` is MOSAIC's own port on the same
+  - [x] **Step 15's port clashed with Mosaic-Forensic's cluster.** The suggested `8081` is Mosaic-Forensic's own port on the same
     OrbStack. There is now a `local_k8s_port` setting (default `8082`), checked with `lsof`. Done in PR #5.
   - [x] **The snapshot's setup-uv pin was outdated.** `v10.3.2` is pinned in the snapshot, and the trial used
     `v10.3.3`. The Step 4 contract and `SKILL.md` now say to use current releases. Done in PR #5. The snapshot
@@ -23,17 +23,17 @@ item off with the date and the PR.
   - `affected_tests.py`;
   - the label hook.
 
-  Why: a machine then checks Claude's test judgment. Proving the tools in the kit first keeps MOSAIC stable.
-- [ ] **c. MOSAIC adoption** (done by the MOSAIC session in `mosaic-prototype`, not from here). It has two stages:
+  Why: a machine then checks Claude's test judgment. Proving the tools in the kit first keeps Mosaic-Forensic stable.
+- [ ] **c. Mosaic-Forensic adoption** (done by the Mosaic-Forensic session in `mosaic-prototype`, not from here). It has two stages:
   1. [x] right after v0: the testing *rules*, copied word for word from `references/testing.md`. Done 2026-11-13
      in mosaic-prototype PR #23, plus PR #24 (ADR 0005 allows removing a removed feature's tests).
   2. once item b is proven: the testing *tools*.
 
-  Why: MOSAIC and the kit stay identical, with the kit as the source.
-- [ ] **d. Back-sync from MOSAIC.** In kit sessions, check MOSAIC for improvements since `reference/SOURCE.md`,
+  Why: Mosaic-Forensic and the kit stay identical, with the kit as the source.
+- [ ] **d. Back-sync from Mosaic-Forensic.** In kit sessions, check Mosaic-Forensic for improvements since `reference/SOURCE.md`,
       compare them with the kit, and ask the user before copying anything.
-      Why: MOSAIC keeps evolving, and good generic fixes should reach the kit.
-- [ ] **e. `dev/refresh_reference.sh` to re-copy `reference/` from MOSAIC.**
+      Why: Mosaic-Forensic keeps evolving, and good generic fixes should reach the kit.
+- [ ] **e. `dev/refresh_reference.sh` to re-copy `reference/` from Mosaic-Forensic.**
       Why: it makes the snapshot refresh repeatable and records the new source commit.
 - [ ] **f. A neutral template repo plus `render_step.py`, replacing `reference/`.**
       Why: for unswapped steps, copying tested files is faster and more reliable than adapting them each time.

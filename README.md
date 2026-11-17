@@ -1,15 +1,15 @@
 # ncsa-webapp-kit
 
-A Claude Code skill, `new-webapp-project`, that builds a new web app prototype the way MOSAIC was built:
+A Claude Code skill, `new-webapp-project`, that builds a new web app prototype the way Mosaic-Forensic (formerly MOSAIC) was built:
 - 18 small steps (0, 1, 1b, 2–16);
 - each step is one plan file, one branch, one PR and one `step-N` tag, and is verified by you.
 
 It is a **recipe plus a reference**:
 - [`skills/new-webapp-project/references/steps/`](skills/new-webapp-project/references/steps/) holds the recipe: one contract per step (goal, deliverables,
-  acceptance checks, MOSAIC's default way, and swap notes);
-- `skills/new-webapp-project/reference/` holds a snapshot of what MOSAIC actually did at each step (see `SOURCE.md`).
+  acceptance checks, the default way, and swap notes);
+- `skills/new-webapp-project/reference/` holds a snapshot of what Mosaic-Forensic actually did at each step (see `SOURCE.md`).
 
-The skill adapts the reference to the new project's names, domain and stack. MOSAIC's choices are the defaults, and
+The skill adapts the reference to the new project's names, domain and stack. Mosaic-Forensic's choices are the defaults, and
 any of them can be swapped (for example Postgres instead of Redis, or shadcn for the UI).
 
 ## How to view the build steps
@@ -74,14 +74,14 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
    mkdir -p ~/projects/my-app && cd ~/projects/my-app && claude
    ```
 
-8. **Ask for a new project,** for example: *"Start a new project with the MOSAIC framework."* The skill starts on
+8. **Ask for a new project,** for example: *"Start a new web app project with the NCSA webapp kit."* The skill starts on
    its own; you can also name it ("use the new-webapp-project skill").
 9. **Answer the interview.** Each question shows a default, which you can accept or change:
    - **The project:** slug, title, one-line description, the name of one record (default "Case"), GitHub owner and
      repo name. At NCSA, avoid a plain "mosaic" name.
    - **The domain:** your input variables, typed in or from a CSV/JSON dictionary file, and the model's outputs, each
      numeric or categorical.
-   - **The stack:** keep MOSAIC's defaults (FastAPI, Redis, React) or swap a part, such as Postgres or shadcn.
+   - **The stack:** keep the defaults (FastAPI, Redis, React) or swap a part, such as Postgres or shadcn.
    - **Versions and deployment values:** NCSA defaults; leave them until Step 14 if you like.
 
    Review the `project.yaml` it writes, then say OK.
@@ -143,7 +143,7 @@ repo's `CLAUDE.md` load, with its rule to show the next `ROADMAP.md` items and a
 opened in `mosaic-prototype` or elsewhere won't see that rule.
 
 - `ROADMAP.md` is the to-do list, done one item at a time.
-- `skills/new-webapp-project/references/testing.md` is the master copy of the testing rules. MOSAIC and every
+- `skills/new-webapp-project/references/testing.md` is the master copy of the testing rules. Mosaic-Forensic and every
   generated project copy it word for word.
 - One-time setup per clone: `make setup` installs the pre-commit hooks. `make lint` and `make doctor` run the checks.
 
@@ -173,5 +173,5 @@ README.md, CLAUDE.md, ROADMAP.md, Makefile (setup, lint, doctor), scripts/doctor
 skills/new-webapp-project/
   SKILL.md            the workflow
   references/         steps/ (contracts), interview, stack, naming, branching, testing
-  reference/          the MOSAIC snapshot (SOURCE.md + step-NN/{plan.md, changes.txt, files/})
+  reference/          the Mosaic-Forensic snapshot (SOURCE.md + step-NN/{plan.md, changes.txt, files/})
 ```

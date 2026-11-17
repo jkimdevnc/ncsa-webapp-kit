@@ -1,11 +1,11 @@
 ---
 name: new-webapp-project
-description: Start a new NCSA-style web app prototype using the MOSAIC framework recipe (FastAPI + Redis + React/Vite with a typed OpenAPI client, pytest/Vitest/Playwright, CI, Docker Compose, multi-arch images, Kubernetes on OrbStack and NCSA staging), built step by step with one plan, branch, PR and tag per step, and any stack component swappable. Use this whenever the user wants to start, scaffold, bootstrap or set up a new project "like MOSAIC", a new prototype with the same framework, or asks to resume building such a project, even if they don't name the framework or the skill.
+description: Start a new NCSA-style web app prototype using the NCSA web app framework recipe (FastAPI + Redis + React/Vite with a typed OpenAPI client, pytest/Vitest/Playwright, CI, Docker Compose, multi-arch images, Kubernetes on OrbStack and NCSA staging), built step by step with one plan, branch, PR and tag per step, and any stack component swappable. Use this whenever the user wants to start, scaffold, bootstrap or set up a new project "like Mosaic-Forensic" (formerly MOSAIC), a new prototype with the same framework, or asks to resume building such a project, even if they don't name the framework or the skill.
 ---
 
-# New web app project (the MOSAIC framework recipe)
+# New web app project (the NCSA web app framework recipe)
 
-This skill builds a new project the way MOSAIC was built: in small, verified steps (0, 1, 1b, 2–16). Each step is
+This skill builds a new project the way Mosaic-Forensic (formerly MOSAIC) was built: in small, verified steps (0, 1, 1b, 2–16). Each step is
 its own plan file, branch, PR and `step-N` tag, and you stop for the user to verify it. The result is a working,
 tested framework:
 - data is entered in the browser;
@@ -18,26 +18,26 @@ The new project gets its **own names, domain and (if the user wants) stack**.
 ## What is in this skill
 
 - `references/steps/step-NN.md`: **the recipe.** One contract per step: goal, required deliverables, acceptance
-  checks, MOSAIC's default way, and swap notes. The contract is what a step must achieve. Read it first for every
+  checks, the default way, and swap notes. The contract is what a step must achieve. Read it first for every
   step.
 - `references/steps/README.md`: **the steps at a glance.** All 18 steps in the overview format the user wants (see
   "Showing the steps" below).
-- `reference/step-NN/`: **MOSAIC's actual work** for that step, as a snapshot:
-  - `plan.md`: MOSAIC's step plan;
+- `reference/step-NN/`: **Mosaic-Forensic's actual work** for that step, as a snapshot:
+  - `plan.md`: Mosaic-Forensic's step plan;
   - `changes.txt`: the files added, modified and deleted;
   - `files/`: those files.
 
-  `reference/SOURCE.md` says which MOSAIC commit it came from. Treat it as a worked example to adapt, not a template
-  to paste: it carries MOSAIC's names and domain.
+  `reference/SOURCE.md` says which Mosaic-Forensic commit it came from. Treat it as a worked example to adapt, not a template
+  to paste: it carries Mosaic-Forensic's names and domain.
 - `references/interview.md`: what to ask before Step 1, and the `project.yaml` format.
 - `references/stack.md`: the default stack, the swaps, and how to do a swap.
-- `references/naming.md`: every MOSAIC name and what it becomes, plus the leftover check.
+- `references/naming.md`: every Mosaic-Forensic name and what it becomes, plus the leftover check.
 - `references/branching.md`: the exact git and GitHub flow per step.
 - `references/testing.md`: **the testing rules (canonical master copy)**, which go word for word into the new
   project's `CLAUDE.md`.
 
-Never read or change the live MOSAIC checkout. Everything needed is in `reference/`. Keeping to the snapshot means
-the skill behaves the same no matter what MOSAIC looks like today.
+Never read or change the live Mosaic-Forensic checkout. Everything needed is in `reference/`. Keeping to the snapshot means
+the skill behaves the same no matter what Mosaic-Forensic looks like today.
 
 ## Start: new project or resume?
 
@@ -109,14 +109,14 @@ Do the steps in this order: **00, 01, 01b, 02, 03, …, 16**. For each step:
    - **domain:** variables, outputs, entity and the toy model come from `project.yaml`;
    - **swaps:** follow the contract's swap notes and `references/stack.md`;
    - **files deleted** in `changes.txt`: delete them too, unless the project never had them;
-   - **files changed in a later MOSAIC step:** take only what this step needs, and leave later behavior for its own
+   - **files changed in a later Mosaic-Forensic step:** take only what this step needs, and leave later behavior for its own
      step.
 
    Use the reference as a strong default: it is code that already passed this step's checks. Its versions of
    actions, images and tools date from the snapshot (see `reference/SOURCE.md`). Use current releases instead,
    for example the latest `astral-sh/setup-uv`.
 
-   Don't copy MOSAIC's lockfiles or generated API files. Install with `uv sync` / `npm install`, and generate with
+   Don't copy Mosaic-Forensic's lockfiles or generated API files. Install with `uv sync` / `npm install`, and generate with
    `make gen-api`, so they match this project.
 6. **Test as you go.** Before every commit, follow `references/testing.md`:
    1. find the affected tests;
@@ -146,7 +146,7 @@ Do the steps in this order: **00, 01, 01b, 02, 03, …, 16**. For each step:
 
 **If a check fails,** fix the cause on the branch. Never weaken or skip a test to get green (see the regression
 rules). If the fix needs a decision (a design change, a different tool, a test changed on purpose), ask the user.
-Note in the step's summary anything in the reference that was wrong or MOSAIC-specific; it is useful feedback for the
+Note in the step's summary anything in the reference that was wrong or Mosaic-Forensic-specific; it is useful feedback for the
 kit (ROADMAP item a).
 
 ## 3. Where you always stop for the user
@@ -169,7 +169,7 @@ Besides the stop at the end of every step, stop for the things only the user can
 
 ## 4. The new project's CLAUDE.md
 
-Step 1 writes `CLAUDE.md`, adapted from `reference/step-01/files/CLAUDE.md`. Later steps grow it as MOSAIC's did.
+Step 1 writes `CLAUDE.md`, adapted from `reference/step-01/files/CLAUDE.md`. Later steps grow it as Mosaic-Forensic's did.
 It must contain:
 - the project intro and the stage plan;
 - the working style and the branching rules (Step 1b adds the branching section);
@@ -197,4 +197,4 @@ Suggest a first milestone PR from `develop` into `main` (tagged `v0.1.0`) only i
 
 The user verifies every step, so keep each stop short and concrete: what changed, what you checked, and what they
 should try. Use plain language. When something in this skill seems wrong for this project, say so and ask, rather
-than forcing MOSAIC's way.
+than forcing the default.

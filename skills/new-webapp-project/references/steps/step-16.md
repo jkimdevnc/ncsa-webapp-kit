@@ -36,7 +36,7 @@ and run the whole E2E suite against it. This completes Stage 2.
 7. Tests: no new test files; the restart and replicas tests now take the kubectl prefix and URL from env vars, so
    they run on both clusters (a deliberate change if they named the local cluster before; say so in the PR).
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 NCSA cluster `visual-analytics` (Rancher, one amd64 k3s node), Traefik with a `letsencrypt` cert resolver,
 hostname `mosaic.staging.platform.visari.org`, namespace `mosaic-staging`, secret `ghcr-pull`, kubeconfig
 `~/.kube/ncsa-visual-analytics.yaml` (override `NCSA_KUBECONFIG`). Targets `ncsa-up`, `ncsa-down`,

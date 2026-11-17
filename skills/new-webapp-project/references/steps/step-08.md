@@ -37,7 +37,7 @@ test framework, so every later screen lands on a tested base. The only screen is
    - a 502 with no readyz body (API down behind the dev proxy) → API "unreachable";
    - elements are found by role and label, not CSS classes.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 React 19, Vite 8, TanStack Query 5, Tailwind 4 through `@tailwindcss/vite`, TypeScript 6.0 (not 7, for
 typescript-eslint). Vitest with jsdom and `jest-dom`; tests stub `fetch` with `vi.stubGlobal`. Files:
 `vite.config.ts` (port 3000, `/api` proxy), `src/api/readyz.ts`, `src/components/StatusPanel.tsx` and its test,

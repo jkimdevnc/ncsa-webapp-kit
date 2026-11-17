@@ -1,21 +1,21 @@
-# Renaming MOSAIC's names to the new project's
+# Renaming Mosaic-Forensic's names to the new project's
 
-The files in `reference/` are MOSAIC's real files. Every MOSAIC name in them must become the new project's value from
+The files in `reference/` are Mosaic-Forensic's real files. Every Mosaic-Forensic name in them must become the new project's value from
 `project.yaml`. Use this table as a checklist when adapting each file. Search the adapted files afterwards with the
 command at the end.
 
 **Why it matters.** A leftover `mosaic` breaks things in the new project:
 - image pulls from the wrong registry;
 - Redis keys that clash with another app's;
-- an Ingress host that points at MOSAIC.
+- an Ingress host that points at Mosaic-Forensic.
 
 It also confuses the next reader.
 
 ## Names and values
 
-| In MOSAIC | Becomes | Where it shows up |
+| In Mosaic-Forensic | Becomes | Where it shows up |
 |---|---|---|
-| `MOSAIC` (display name) | `<Title>` | README, CLAUDE.md, ADRs, FastAPI `title`, `<title>`, `<h1>` |
+| `MOSAIC` / `Mosaic-Forensic` (display name) | `<Title>` | README, CLAUDE.md, ADRs, FastAPI `title`, `<title>`, `<h1>` |
 | `mosaic` (slug) | `<slug>` | Docker user, Compose image names, k8s labels, the Ingress name, the Docker network |
 | `mosaic-prototype` | `<repo>` | README, doctor, docs |
 | `mosaic:` (Redis key prefix) | `<slug>:` | `store.py`, tests, docs |
@@ -30,7 +30,7 @@ It also confuses the next reader.
 | `visual-analytics`, `~/.kube/ncsa-visual-analytics.yaml` | `<kube_context>`, `<kubeconfig>` | Makefile, doctor, docs |
 | `ghcr-pull`, `websecure`, `letsencrypt` | `<pull_secret>`, `<entrypoint>`, `<cert_resolver>` | the ncsa overlay, docs |
 | `E2E_RESTART_REDIS`, `redis-restart.spec.ts` | `E2E_RESTART_STORAGE`, `storage-restart.spec.ts` (storage-neutral names, used from the start) | Makefile, Playwright specs |
-| `E2E_K8S_NAMESPACE` (Step 15 only) | `E2E_KUBECTL` (MOSAIC's final form, from Step 16) | Makefile, `replicas.spec.ts` |
+| `E2E_K8S_NAMESPACE` (Step 15 only) | `E2E_KUBECTL` (Mosaic-Forensic's final form, from Step 16) | Makefile, `replicas.spec.ts` |
 | `ncsa-up`, `ncsa-down`, `test-e2e-ncsa` | `<target>-up`, `<target>-down`, `test-e2e-<target>` (`<target>` defaults to `ncsa`) | Makefile, docs |
 
 ## The domain (from the interview, not a text swap)
@@ -38,7 +38,7 @@ It also confuses the next reader.
 These are not simple renames. Rewrite them from `project.yaml`, following `steps/step-05.md`, `step-06.md`,
 `step-11.md` and `step-12.md`.
 
-| In MOSAIC | Becomes |
+| In Mosaic-Forensic | Becomes |
 |---|---|
 | `Workup` / `workup` / `workups` / `WORKUP_ID_PATTERN` | `<Entity>` / `<entity>` / `<entity>s` / `<ENTITY>_ID_PATTERN` (routes, components, test labels, keys) |
 | GOL, NOL, BNL, XCB and their ranges (`dictionary_v0.json`) | the interview's variables |
@@ -56,7 +56,7 @@ These are not simple renames. Rewrite them from `project.yaml`, following `steps
   Rewrite it if the persistence mode was swapped.
 - **The `make doctor` check "private + template".** In a generated project it becomes "private", because generated
   projects are not templates. The exception is when the user asked for one.
-- **`docs/plans/step-NN.md`.** Never copy MOSAIC's plans. Write each plan new, from the step contract.
+- **`docs/plans/step-NN.md`.** Never copy Mosaic-Forensic's plans. Write each plan new, from the step contract.
 
 ## Leftover check
 
@@ -70,15 +70,15 @@ grep -rniE 'mosaic|jkimdevnc|workup|cranial|mesocranic|MLStopping' \
 ```
 
 The last filter drops lines that contain the project's own owner or slug. It is needed because those values can
-contain a MOSAIC name. In the `webapp-kit-test` try-it, for example, the owner was `jkimdevnc-kit-try`, and without
+contain a Mosaic-Forensic name. In the `webapp-kit-test` try-it, for example, the owner was `jkimdevnc-kit-try`, and without
 the filter every line naming it was flagged and had to be accepted by hand.
 
-Every remaining hit must be fixed. When the owner or slug *does* contain a MOSAIC name, also take one quick look at
+Every remaining hit must be fixed. When the owner or slug *does* contain a Mosaic-Forensic name, also take one quick look at
 the lines the filter dropped (run the grep without the last filter): a single line can hold both the user's value and
 a real leftover. Say what you found in the step's summary.
 
 `visual-analytics` is not in the pattern. It is the NCSA cluster's context name, a deploy default the project keeps
 on purpose. Two kinds of remaining hits are fine, as long as you say so in the summary:
-- plan files or docs that mention MOSAIC as the source of a decision (for example "MOSAIC added this in a later
+- plan files or docs that mention Mosaic-Forensic (or MOSAIC, in older notes) as the source of a decision (for example "Mosaic-Forensic added this in a later
   review");
-- notes about sharing OrbStack with MOSAIC's cluster.
+- notes about sharing OrbStack with Mosaic-Forensic's cluster.

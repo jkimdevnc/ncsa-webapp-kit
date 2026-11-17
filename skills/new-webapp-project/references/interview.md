@@ -13,7 +13,7 @@ many files and tests. Stack choices can still change later, just before the step
 | `slug` | Short lowercase name, used in images, namespaces and keys | none (asked) |
 | `title` | Display name | the slug, upper-cased |
 | `description` | One line: what the app does | none (asked) |
-| `entity` | What one record of entered data is called (MOSAIC: "Workup") | `Case` |
+| `entity` | What one record of entered data is called (Mosaic-Forensic: "Workup") | `Case` |
 | `owner` | GitHub owner of the repo and images: the user's account or an org | the active `gh` user. When trying the skill out: the user's throwaway org |
 | `repo` | Repo name | `<slug>-prototype` |
 | `folder` | Local folder for the new repo | next to the current folder, named `<repo>` |
@@ -47,7 +47,7 @@ project has a real model, which then goes into the model catalog. Tell the user 
 
 ## Round 3: the stack
 
-Show the stack table from `stack.md`, with MOSAIC's defaults, and ask: "Keep all defaults, or swap something now?"
+Show the stack table from `stack.md`, with the defaults, and ask: "Keep all defaults, or swap something now?"
 The user can also swap later, before the step that uses an item. Record every choice under `stack:`.
 
 ## Round 4: versions and deployment
@@ -60,7 +60,7 @@ The user can also swap later, before the step that uses an item. Record every ch
 | `kubeconfig` / `kube_context` | `~/.kube/ncsa-visual-analytics.yaml` / `visual-analytics` |
 | `pull_secret` | `ghcr-pull` |
 | `entrypoint` / `cert_resolver` | `websecure` / `letsencrypt` |
-| `local_k8s_port` | `8082`: the local port for the OrbStack cluster (Step 15). It must be free, and MOSAIC's cluster uses `8081`. |
+| `local_k8s_port` | `8082`: the local port for the OrbStack cluster (Step 15). It must be free, and Mosaic-Forensic's cluster uses `8081`. |
 
 These are the NCSA defaults, and all of them can be overridden. They matter only from Step 14 on, so the user can
 leave them as they are and change them before Step 14. Step 15 checks that `local_k8s_port` is free.

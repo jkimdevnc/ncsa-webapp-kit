@@ -43,11 +43,11 @@ and never stores or logs the entered values. Each `<entity>` gets a run log of i
      another owner's runs are not listed, the log is capped.
 4. Integration (real storage): the same round trip, including the TTL.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 `app/auth.py`, `app/runner.py`, `app/store.py` (`RedisResultStore`), `app/analyses.py` (router). The entity was the
 "Workup", so the field was `workup_id` and the run log was `GET /api/v1/workups/{workup_id}/analyses`. Keys
 `mosaic:analysis:{id}` (JSON with TTL) and the list `mosaic:workup:{id}:analyses` (its TTL refreshed). 422 errors
-name the field, e.g. "XCB is not possible: outside 100–200 mm". MOSAIC added the owner filter, expired-id cleanup,
+name the field, e.g. "XCB is not possible: outside 100–200 mm". Mosaic-Forensic added the owner filter, expired-id cleanup,
 the 100-run cap and the 200-value limit later, in a review-fix PR (#19); a new project builds them in here.
 
 Reference: reference/step-07/ (plan.md, changes.txt, files/); the hardened store is in reference/step-14/files/.

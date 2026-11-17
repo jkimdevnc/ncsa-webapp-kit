@@ -30,7 +30,7 @@ Make the API's OpenAPI spec the single source of truth for the frontend: the cli
 4. The status panel still shows API ok, storage ok, Model loaded with the dev servers running.
 5. Tests added: the contract check itself (`make check-openapi` in `make test`), and type-checking in `make test-fe`.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 `backend/scripts/export_openapi.py` writes `app.openapi()`. openapi-typescript 7 generates `schema.d.ts`, and
 openapi-fetch makes the client (`createClient<paths>`). openapi-typescript declared support only for TypeScript 5, so
 `package.json` has an npm `overrides` entry for TypeScript 6.0. The Makefile's `check-openapi` later used
