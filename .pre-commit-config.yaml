@@ -1,5 +1,5 @@
 # Runs on every commit (after `make setup`) and on all files with `make lint`.
-# The MOSAIC snapshot in skills/new-webapp-project/reference/ is never rewritten by these hooks.
+# The reference snapshot in skills/new-webapp-project/reference/ is never rewritten by these hooks.
 exclude: ^skills/new-webapp-project/reference/
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -13,6 +13,6 @@ repos:
       - id: check-added-large-files
         args: [--maxkb=1024]
       - id: detect-private-key
-      # main and develop only change through pull requests (CLAUDE.md, "Branching").
+      # main and develop only change through pull requests (CLAUDE.md, "Git branching rules").
       - id: no-commit-to-branch
         args: [--branch, main, --branch, develop]

@@ -1,9 +1,9 @@
-# The stack: MOSAIC's defaults and how to swap
+# The stack: the defaults and how to swap
 
-Every item has a default, which is MOSAIC's choice, and the files in `reference/` show that default. The user can
+Every item has a default, which is Mosaic-Forensic's choice, and the files in `reference/` show that default. The user can
 swap any item, either at the interview or just before the first step that uses it.
 
-**Why swaps are allowed.** The framework's value is its *shape*, not MOSAIC's exact tools:
+**Why swaps are allowed.** The framework's value is its *shape*, not one project's exact tools:
 - small steps;
 - a stable make interface;
 - swap points;

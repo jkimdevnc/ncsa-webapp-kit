@@ -1,4 +1,4 @@
-# Fails a pull request whose source branch breaks the branching model (see CLAUDE.md, "Branching"):
+# Fails a pull request whose source branch breaks the branching model (see CLAUDE.md, "Git branching rules"):
 #   into main    - only from develop
 #   into develop - only from feature/*, fix/*, docs/* or chore/*
 # GitHub Free has no branch protection for private repos, so a red check here means "do not merge".

@@ -29,14 +29,14 @@ the git commit, so Kubernetes clusters can pull them. No application code change
 6. Test added: the amd64 smoke test in CI (the `api` container is ready; `web` serves the app and passes `/api` on).
    The smoke commands are dry-run locally against the Compose images before the first CI run.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 `.github/workflows/images.yml` with QEMU, buildx, `docker/build-push-action`, the GitHub Actions cache, pushing to
 GHCR (`ghcr.io/jkimdevnc/mosaic-api`, `mosaic-web`) with `GITHUB_TOKEN`. arm64 was built under QEMU emulation on
 amd64 runners (free for private repos). `frontend/Dockerfile`'s build stage got `--platform=$BUILDPLATFORM`.
 `make images` ran `docker buildx build --platform linux/amd64,linux/arm64 --output type=cacheonly`. Viewing private
 packages needed `gh auth refresh -s read:packages` and a `docker login ghcr.io`.
 
-Note: MOSAIC's changes.txt for this step also lists backend and frontend files. Those came from the review-fix PR
+Note: Mosaic-Forensic's changes.txt for this step also lists backend and frontend files. Those came from the review-fix PR
 (#19), merged between Steps 13 and 14, not from this step. The relevant fixes are folded into Steps 7, 9, 10 and 11
 of these contracts.
 

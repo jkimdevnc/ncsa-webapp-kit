@@ -1,7 +1,7 @@
 # ncsa-webapp-kit: rules for working on this repo
 
 This repo holds the `new-webapp-project` skill (in `skills/new-webapp-project/`). The skill builds new projects with
-the MOSAIC framework recipe. Read `README.md` for the overview.
+the NCSA web app framework recipe. Read `README.md` for the overview.
 
 ## The roadmap rule (do this first)
 
@@ -17,11 +17,11 @@ Work outside the roadmap (a typo, a question) doesn't need this, but say if it t
 ## Working rules
 
 - **`skills/new-webapp-project/references/testing.md` is the master copy of the testing rules.** Change the rules
-  there first. Every other copy (generated projects, MOSAIC once it adopts them) follows it word for word.
-- **`skills/new-webapp-project/reference/` is a snapshot of MOSAIC.** Don't edit it by hand. Refresh it only through
+  there first. Every other copy (generated projects, Mosaic-Forensic once it adopts them) follows it word for word.
+- **`skills/new-webapp-project/reference/` is a snapshot of Mosaic-Forensic.** Don't edit it by hand. Refresh it only through
   ROADMAP item e, which records the new source commit in `reference/SOURCE.md`.
-- **This session never changes `mosaic-prototype`.** The kit may read MOSAIC (for a refresh or a back-sync, ROADMAP
-  items d and e), but MOSAIC's own changes are made in a session opened in that repo.
+- **This session never changes `mosaic-prototype`.** The kit may read Mosaic-Forensic (for a refresh or a back-sync, ROADMAP
+  items d and e), but Mosaic-Forensic's own changes are made in a session opened in that repo.
 - Keep `SKILL.md` under 500 lines. Put details in `references/`, and point to them from `SKILL.md`.
 - Write the skill's instructions in plain English, and explain *why* rather than relying on bare MUSTs, following the
   skill-creator guidance.
@@ -29,7 +29,7 @@ Work outside the roadmap (a typo, a question) doesn't need this, but say if it t
   `skills/new-webapp-project`. Run `make doctor` after setup changes. Run `make setup` once per clone.
 - Never commit secrets: tokens, kubeconfigs, `.env` files.
 
-## Branching (the same model as mosaic-prototype)
+## Git branching rules
 
 - **Never commit directly on `main` or `develop`.** The pre-commit hook blocks it.
 - **`develop` is the default branch.** It receives changes only through PRs from `feature/`, `fix/`, `docs/` or

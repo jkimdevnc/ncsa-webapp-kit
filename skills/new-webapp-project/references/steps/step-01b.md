@@ -38,8 +38,8 @@ template and the docs.
 
 No feature tests are added: this step has no features.
 
-## Default (MOSAIC's way)
-MOSAIC did this as PR #1 from `chore/branching-model`, with small commits: the hook in `.pre-commit-config.yaml`,
+## Default (Mosaic-Forensic's way)
+Mosaic-Forensic did this as PR #1 from `chore/branching-model`, with small commits: the hook in `.pre-commit-config.yaml`,
 `.github/workflows/branch-policy.yml`, the PR template, ADR 0007, CLAUDE.md and README text, and the doctor checks.
 PR #2 from `wip-test` showed the red check and was closed. During the step it decided to keep merged branches
 (auto-delete off, rename with a `_DONE` suffix instead). Later (PR #4) the `gh` account rule moved to
@@ -47,7 +47,7 @@ PR #2 from `wip-test` showed the red check and was closed. During the step it de
 
 Reference: reference/step-01b/ (plan.md, changes.txt, files/).
 
-MOSAIC only added `docs/plans/` in Step 7 and rebuilt the earlier plans then; a new project starts it here.
+Mosaic-Forensic only added `docs/plans/` in Step 7 and rebuilt the earlier plans then; a new project starts it here.
 
 Adapt: the owner and account name, the ADR number, and the PR numbers.
 

@@ -37,7 +37,7 @@ Run the whole stack in containers: storage, `api` and `web` (a web server that s
    was on disk) **while the `<entity>`'s name and values are still there** (they live in the browser). The dev-server
    E2E run and the `ci` job skip it.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 Images built from `ghcr.io/astral-sh/uv:python3.15-trixie-slim` → `python:3.15-slim-trixie`, and
 `node:26-trixie-slim` → `caddy:2-alpine` with `frontend/Caddyfile` (`auto_https off`, admin off). The env var was
 `E2E_RESTART_REDIS`, first a flag (`1`); Step 15 changed it to the restart command. A new project uses the command form

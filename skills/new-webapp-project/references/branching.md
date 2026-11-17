@@ -1,6 +1,6 @@
 # The per-step git flow
 
-This is the same flow MOSAIC used. Following it gives the user one reviewable PR per step and a `step-N` tag to roll
+This is the same flow Mosaic-Forensic used. Following it gives the user one reviewable PR per step and a `step-N` tag to roll
 back to.
 
 ## The model

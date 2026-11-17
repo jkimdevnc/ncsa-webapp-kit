@@ -25,11 +25,11 @@ the regression suite no longer depends on someone remembering to run it.
 
 No new tests are added: the existing suite now also runs in CI.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 One `ci` job on `ubuntu-latest` with `permissions: contents: read`; a `redis:7-alpine` service on
 `localhost:6379`; `astral-sh/setup-uv` (pinned to `v10.3.2`, because that action publishes no floating major tag),
 which installs Python from `backend/.python-version`; then `make lint` and `make test`. PR #7 was the red
-demonstration. After the merge MOSAIC renamed the branch with `_DONE` and learned to wait until GitHub stops listing
+demonstration. After the merge Mosaic-Forensic renamed the branch with `_DONE` and learned to wait until GitHub stops listing
 the old name before pruning.
 
 Reference: reference/step-04/ (plan.md, changes.txt, files/).

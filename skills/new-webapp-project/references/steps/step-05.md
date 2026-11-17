@@ -30,8 +30,8 @@ Analyze (Step 7) and the entry screen (Step 11) use. Adding variables later is a
    - the loader rejects a file with duplicate codes, and a file with `min >= max`.
 6. CI passes on the PR.
 
-## Default (MOSAIC's way)
-MOSAIC's `backend/app/data/dictionary_v0.json` (version `0.1.0`) held four cranial measurements (GOL, NOL, BNL, XCB)
+## Default (Mosaic-Forensic's way)
+Mosaic-Forensic's `backend/app/data/dictionary_v0.json` (version `0.1.0`) held four cranial measurements (GOL, NOL, BNL, XCB)
 in mm with `precision: 0.1`. It used `name` (not `label`) and two grouping fields, `region` ("Cranium") and `group`
 ("Metric"), instead of one `section`. XCB's range came from a Figma wireframe; the others were placeholders "to be
 confirmed by the PI". `backend/app/dictionary.py` had pydantic models `Variable` and `Dictionary` and a cached

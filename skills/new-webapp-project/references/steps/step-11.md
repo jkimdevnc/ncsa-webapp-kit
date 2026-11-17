@@ -45,7 +45,7 @@ dictionary, and under the default persistence mode everything typed stays in the
 5. Test added (E2E, real API): rename, enter an out-of-range value → error visible; reload → name and values kept;
    **watching every request, none to `/api` carries the values** while typing.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 The entity was a "Workup": `src/storage/workupStore.ts` (key `mosaic:workup`), `src/workup/useWorkup.ts`,
 `validation.ts`, `WorkupPage.tsx`, `src/api/dictionary.ts`, `e2e/workup.spec.ts`. Sections came from region + group
 ("Cranium · Metric"). Error text "Not possible: outside 100–200 mm." from a Figma screen. One `<entity>` per device;

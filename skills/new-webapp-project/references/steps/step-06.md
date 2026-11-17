@@ -36,12 +36,12 @@ Add a small trained demo model, the model catalog (the swap point for real model
    - the integration test goes through the real startup, which loads the model.
 5. CI passes on the PR.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 The `cranial-demo` model took GOL and XCB and returned two outputs: the cranial index (XCB / GOL × 100, computed in
 code, rounded to 0.1) and a class (dolichocranic / mesocranic / brachycranic) from a scikit-learn
 `DecisionTreeClassifier` trained on synthetic indexes (seed 0), saved with joblib to `cranial_demo.joblib`.
-(183, 140) → 76.5, mesocranic. During the step MOSAIC added per-model handlers and the catalog's `inputs`, because
-real models may not be scikit-learn. MOSAIC's catalog did not list `outputs`; a new project adds them so the UI can
+(183, 140) → 76.5, mesocranic. During the step Mosaic-Forensic added per-model handlers and the catalog's `inputs`, because
+real models may not be scikit-learn. Mosaic-Forensic's catalog did not list `outputs`; a new project adds them so the UI can
 label each output (Step 12).
 
 Reference: reference/step-06/ (plan.md, changes.txt, files/).
