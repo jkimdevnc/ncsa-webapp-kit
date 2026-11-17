@@ -1,6 +1,6 @@
 # ncsa-webapp-kit
 
-A Claude Code skill, `new-webapp-project`, that builds a new web app prototype the way Mosaic-Forensic (formerly MOSAIC) was built:
+A Claude Code skill, `new-webapp-project`, that builds a new web app prototype the way Mosaic-Forensic was built:
 - 18 small steps (0, 1, 1b, 2–16);
 - each step is one plan file, one branch, one PR and one `step-N` tag, and is verified by you.
 
@@ -78,7 +78,7 @@ Claude Code skills. The repo is private, so you need access to `jkimdevnc/ncsa-w
    its own; you can also name it ("use the new-webapp-project skill").
 9. **Answer the interview.** Each question shows a default, which you can accept or change:
    - **The project:** slug, title, one-line description, the name of one record (default "Case"), GitHub owner and
-     repo name. At NCSA, avoid a plain "mosaic" name.
+     repo name.
    - **The domain:** your input variables, typed in or from a CSV/JSON dictionary file, and the model's outputs, each
      numeric or categorical.
    - **The stack:** keep the defaults (FastAPI, Redis, React) or swap a part, such as Postgres or shadcn.
