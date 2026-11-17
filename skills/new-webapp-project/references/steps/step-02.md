@@ -28,8 +28,8 @@ default mode (results only, in memory), nothing may ever reach disk.
 No feature tests yet. "Results are not saved to disk" is a feature requirement, so its regression test comes with the
 feature (Step 13's E2E test: after a storage restart, the run log is empty).
 
-## Default (MOSAIC's way)
-MOSAIC used `redis:7-alpine` with `--save ""`, `--appendonly no`, `--maxmemory 256mb`,
+## Default (Mosaic-Forensic's way)
+Mosaic-Forensic used `redis:7-alpine` with `--save ""`, `--appendonly no`, `--maxmemory 256mb`,
 `--maxmemory-policy volatile-ttl`, tmpfs `/data`, port `127.0.0.1:6379`, and a healthcheck. `scripts/doctor.sh`
 got six Redis checks. The README got a "Local Redis" section.
 

@@ -37,10 +37,10 @@ and the `<entity>`'s run log. The E2E test of this flow becomes the main regress
 6. Deliberate test changes (say so in the PR): the page now also loads the run log (a GET with the id, no values), so
    Step 11's "only the status request while typing" checks become "only GETs, with no body and no query string".
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 `src/api/analyses.ts` (`MODEL_ID = "cranial-demo"`, `MODEL_INPUTS = ["GOL", "XCB"]`), `src/workup/AnalyzePanel.tsx`
 with `useMutation`/`useQuery` (run log invalidated on success), `Analyze.test.tsx`, `e2e/analyze.spec.ts`. Known case
-GOL 183, XCB 140 → "Cranial class: mesocranic", "Cranial index: 76.5". MOSAIC checked "no query string" rather than
+GOL 183, XCB 140 → "Cranial class: mesocranic", "Cranial index: 76.5". Mosaic-Forensic checked "no query string" rather than
 searching URLs for "183", because the random hex id could contain it by chance.
 
 Reference: reference/step-12/ (plan.md, changes.txt, files/).

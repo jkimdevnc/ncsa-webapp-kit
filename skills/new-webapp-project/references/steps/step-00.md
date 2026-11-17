@@ -25,14 +25,14 @@ branch, PR or tag.
 
 No tests are added: this step has no features. From Step 1 on, `make doctor` re-checks all of these tools.
 
-## Default (MOSAIC's way)
-MOSAIC ran on a MacBook Pro M1 (arm64). It installed `uv` with Homebrew and OrbStack as the Docker runtime, chosen
+## Default (Mosaic-Forensic's way)
+Mosaic-Forensic ran on a MacBook Pro M1 (arm64). It installed `uv` with Homebrew and OrbStack as the Docker runtime, chosen
 because it is lighter than Docker Desktop and includes a local Kubernetes for Stage 2. Node 26 and `gh` were already
 installed. Playwright's browser waited for Step 10.
 
 Reference: reference/step-00/ (plan.md only; changes.txt is empty because no files changed).
 
-Adapt: the account name (MOSAIC used its own GitHub account), the Node major version, and the machine's
+Adapt: the account name (Mosaic-Forensic used its own GitHub account), the Node major version, and the machine's
 architecture. If the machine is not arm64, the "build for both architectures" rule still holds for later steps.
 
 ## Swap notes

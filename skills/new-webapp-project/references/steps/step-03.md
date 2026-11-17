@@ -36,11 +36,11 @@ framework (unit and integration) that the regression suite grows from.
    - integration: `readyz` is 200 against the real storage.
 6. `make doctor` passes, including the lock-file check.
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 FastAPI with uvicorn, managed by `uv` (`backend/pyproject.toml`, `uv.lock`, Python 3.15). Settings in
 `app/config.py` with `pydantic-settings` (`REDIS_URL`, `LOG_LEVEL`). Probes in `app/main.py`. One Redis client in
 `app/redis_client.py` with 1 s timeouts. Tests in `backend/tests/unit/` (fakeredis) and `backend/tests/integration/`
-(marked `integration`). During the step MOSAIC moved to Python 3.15, switched the test client to httpx2, and moved
+(marked `integration`). During the step Mosaic-Forensic moved to Python 3.15, switched the test client to httpx2, and moved
 `Depends()` into `Annotated[...]` for ruff's B008 rule.
 
 Reference: reference/step-03/ (plan.md, changes.txt, files/).

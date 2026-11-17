@@ -34,8 +34,8 @@ commands every later step relies on, `make doctor` (setup checks) and `make test
 
 No tests are added: there are no features yet. The test runner is now in place.
 
-## Default (MOSAIC's way)
-MOSAIC wrote `README.md`, `CLAUDE.md`, ADRs 0001–0006 (Redis only in memory, the model runs directly in the API,
+## Default (Mosaic-Forensic's way)
+Mosaic-Forensic wrote `README.md`, `CLAUDE.md`, ADRs 0001–0006 (Redis only in memory, the model runs directly in the API,
 form data stays in the browser, React + Vite with a typed OpenAPI client, the regression-test policy, two-stage
 deployment), a `Makefile`, `scripts/doctor.sh` with ✓/✗ lines, and `.pre-commit-config.yaml` with ruff. It created
 the repo with `gh repo create ... --private` and then `gh repo edit --template`. eslint and prettier were left out of

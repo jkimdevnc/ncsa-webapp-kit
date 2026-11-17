@@ -29,7 +29,7 @@ and storage. The same tests must later run unchanged against Compose and Kuberne
 5. `make lint` and `make test` (backend + frontend + `check-openapi` + E2E) pass; CI passes on the PR.
 6. Test added: E2E "the app loads and the status panel shows everything ready".
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 Playwright with `playwright.config.ts`, `testDir: "e2e"`, Chromium only. At first it reused running dev servers on
 8000/3000 outside CI; a later review fix (#19) made it always start fresh servers on 8001/3001, so a stale dev API
 cannot hide a bug. A new project starts with the fixed behavior. `make setup` runs

@@ -16,7 +16,7 @@ replicas share storage instead of keeping state of their own.
 - A **local overlay** (e.g. `deploy/k8s/overlays/local/`): namespace `<slug>`, the locally built images with no
   pulling (so no pull secret is needed), and `web` exposed on a free local port: `deploy.local_k8s_port` in
   `project.yaml` (default `8082`). Check it first with `lsof -iTCP:<port> -sTCP:LISTEN`. It must clash neither with
-  Compose (`8080`) nor with other clusters on the same OrbStack. MOSAIC's own cluster already uses `8081` there, which
+  Compose (`8080`) nor with other clusters on the same OrbStack. Mosaic-Forensic's own cluster already uses `8081` there, which
   is why the `webapp-kit-test` try-it had to move to `8082`.
 - Every kubectl command names the local context explicitly, so nothing touches another cluster.
 - Make targets: `k8s-up` (build, apply, restart so new images are used, wait for rollout), `k8s-down` (delete the
@@ -43,10 +43,10 @@ replicas share storage instead of keeping state of their own.
 7. Tests added: the replicas E2E test; the restart test runs on Kubernetes (a deliberate test change if its env var
    changed form; say so in the PR).
 
-## Default (MOSAIC's way)
+## Default (Mosaic-Forensic's way)
 Kustomize under `deploy/k8s/`, OrbStack's cluster (`--context orbstack`), images `mosaic-api:dev` / `mosaic-web:dev`
 with `imagePullPolicy: Never`, `web` as a LoadBalancer on `localhost:8081` (no Ingress: OrbStack has none). A new
-project uses its own `local_k8s_port` instead, because 8081 is taken whenever MOSAIC's cluster is running.
+project uses its own `local_k8s_port` instead, because 8081 is taken whenever Mosaic-Forensic's cluster is running.
 `E2E_RESTART_REDIS` changed from a flag to a command here, and the test first used `E2E_K8S_NAMESPACE` (Step 16
 replaced it with `E2E_KUBECTL`; a new project uses `E2E_KUBECTL` now). Caddy needed the `NET_BIND_SERVICE`
 capability kept, because the binary carries it as a file capability. CI does not run Kubernetes.

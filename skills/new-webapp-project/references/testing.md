@@ -3,7 +3,7 @@
 This file is the **single master copy** of the testing rules. Other copies follow it word for word:
 - every generated project's `CLAUDE.md` (under "Regression test rules");
 - the generated PR template (the "Tests:" block only);
-- MOSAIC's `CLAUDE.md`, when MOSAIC adopts these rules (ROADMAP item c).
+- Mosaic-Forensic's `CLAUDE.md`, when Mosaic-Forensic adopts these rules (ROADMAP item c).
 
 Change the rules here first.
 
