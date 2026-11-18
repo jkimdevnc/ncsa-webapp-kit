@@ -11,15 +11,12 @@ many files and tests. Stack choices can still change later, just before the step
 | Key | Question | Default |
 |---|---|---|
 | `slug` | Short lowercase name, used in images, namespaces and keys | none (asked) |
-| `title` | Display name | the slug, upper-cased |
+| `title` | Display name | the slug in title case (`webapp-kit-test` → `WebappKitTest`) |
 | `description` | One line: what the app does | none (asked) |
 | `entity` | What one record of entered data is called (Mosaic-Forensic: "Workup") | `Case` |
 | `owner` | GitHub owner of the repo and images: the user's account or an org | the active `gh` user. When trying the skill out: the user's throwaway org |
 | `repo` | Repo name | `<slug>-prototype` |
 | `folder` | Local folder for the new repo | next to the current folder, named `<repo>` |
-
-**Naming note** (say it when asking for the slug): at NCSA, avoid a plain "mosaic" name for new projects. Prefer
-something distinct, such as `mosaic-msu`, or a name of the project's own.
 
 **Check the owner and repo:** `gh repo view <owner>/<repo>` must fail with "not found". Never reuse an existing repo.
 
